@@ -4,10 +4,10 @@ INSERT INTO ITEMS (Item_Type, Name) VALUES (?, ?);
 -- Item Delete
 DELETE FROM ITEMS WHERE Item_ID = ?;
 
---List Items
-select Item_ID,Item_Type,Name from ITEMS
+-- List Items
+select Item_ID,Item_Type,Name from ITEMS;
 
---Insert Stock
+-- Insert Stock
 INSERT INTO STOCK (Item_ID, Retailer_ID, Expiration_Date, Quantity, Discounted_Price, Surplus) 
     VALUES (?,?,?,?,?,?);
 

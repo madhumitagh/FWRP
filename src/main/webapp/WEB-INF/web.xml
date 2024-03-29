@@ -5,9 +5,13 @@
         <servlet-class>com.fwrp.controller.FWRPServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>FWRPServlet</servlet-name>
-        <url-pattern>/welcome</url-pattern>
-    </servlet-mapping>
+    <servlet-name>FWRPServlet</servlet-name>
+    <url-pattern>/retaillogin.jsp</url-pattern>
+</servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>FWRPServlet</servlet-name>
+    <url-pattern>/customerlogin.jsp</url-pattern>
+</servlet-mapping>
     <session-config>
         <session-timeout>
             30

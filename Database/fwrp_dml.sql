@@ -25,5 +25,5 @@ INSERT INTO STOCK (Item_ID, Retailer_ID, Expiration_Date, Quantity, Discounted_P
 (7, 1, '2024-06-30', 120, 24.99, FALSE),
 (8, 2, '2024-05-31', 220, 34.99, TRUE),
 (9, 3, '2024-04-30', 180, 11.99, FALSE),
-(10, 1, '2024-03-31', 290, 6.99, TRUE);
+(10, 1, '2024-03-31', 290, 6.99, TRUE),
 (10, 1, '2024-03-28', 290, 0.00, TRUE);

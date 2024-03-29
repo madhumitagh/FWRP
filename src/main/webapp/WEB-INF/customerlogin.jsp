@@ -1,7 +1,7 @@
 <%-- 
-    Document   : regist
-    Created on : Mar 29, 2024, 4:22:50 PM
-    Author     : mrinm
+    Document   : customerlogin
+    Created on : Mar. 29, 2024, 7:09:09 p.m.
+    Author     : shilp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page <% out.print(5+3"); %> </title>
+        <title>JSP Page</title>
     </head>
     <body>
         <h1>Hello World!</h1>

@@ -1,0 +1,163 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family: Tahoma;
+    background-color: #FAFDF3;
+    color:#2E5266;
+}
+
+#title {
+    background-color: #7EB09B; 
+    margin: auto;
+    color: #242038;
+    padding: 2rem;
+    text-align: center;
+    font-size: 36px;
+}
+
+#navbar {
+    display: grid;  
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#0A014F;
+}
+
+.navitem {
+    width: 100%;
+    list-style-type: none;
+}
+
+.navitem a {
+    display: block;
+    color: #FAFDF3;
+    text-align: center;
+    width: 100%;
+    padding: 1rem 0;
+    text-decoration: none;
+    font-size: large;
+}
+
+.navitem a:hover {
+    background-color: #476A6F;
+}
+
+.navitem a.active {
+    background-color:#2f4a49;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+a {
+    text-decoration: none;
+    font-size: large;
+}
+
+.info {
+    text-align: center;
+    color:#0A014F;
+    padding: 5px;
+    font-size: larger;
+}
+
+.buttongroup {
+    width: 30%;
+    display: block;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color:#0A014F;
+}
+a {
+    color: white;
+    text-align: center;
+}
+
+.buttongroup:hover {
+    background-color: #476A6F;
+    cursor: pointer;
+} 
+
+#userlogin {
+    width: 100%;
+    display: flex;
+}
+
+.userinfo {
+    width: 50%;
+}
+
+label {
+    font-size: large;
+    color:#476A6F;
+}
+
+input {
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+    margin-bottom: 8px;
+}
+
+.userinfo {
+    padding-left: 3rem;
+}
+
+.submit {
+    margin: 2px;
+    width: 70px;
+    font-size: medium;
+    border-radius: 10px;
+    padding: 5px;
+    border-style: none;
+    color: white;
+    background-color: #0A014F;
+}
+
+.submit:hover {
+    background-color: #2E5266;
+    cursor: pointer;
+}
+
+.buttons {
+    margin: auto;
+    width: 370px;
+}
+
+.buttons2 {
+    margin: auto;
+    width: 250px;
+}
+
+.item {
+    width: 100px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:#2E5266;
+    color: white;
+    border-style: none;
+    font: large;
+}
+
+.item:hover {
+    cursor: pointer;
+    background-color:#7EB09B;
+}
+
+/* Style the footer element with a background color, padding, text alignment, font size, margin, and text color */
+footer {
+    background-color:#2f4a49;
+    padding: 2rem;
+    text-align: center;
+    font-size: large;
+    margin-top: 100px;
+    color: white;
+}
