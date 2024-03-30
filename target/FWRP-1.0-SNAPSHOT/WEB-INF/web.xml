@@ -6,15 +6,12 @@
     </servlet>
     <servlet-mapping>
     <servlet-name>FWRPServlet</servlet-name>
-    <url-pattern>/retaillogin.jsp</url-pattern>
+    <url-pattern>/JSP/*</url-pattern>
 </servlet-mapping>
-    <servlet-mapping>
-    <servlet-name>FWRPServlet</servlet-name>
-    <url-pattern>/customerlogin.jsp</url-pattern>
-</servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
         </session-timeout>
-    </session-config>
+    </session-config>   
 </web-app>
