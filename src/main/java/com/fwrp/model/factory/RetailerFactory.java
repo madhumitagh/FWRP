@@ -9,6 +9,7 @@ import com.fwrp.model.Retailer;
  * @author mrinm
  */
 public class RetailerFactory {
+
     public static Retailer create(String username,
                                   String password,
                                   String name) {
