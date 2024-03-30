@@ -37,7 +37,7 @@
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="password"><br>
                 <a href="./consumerpage.html">
                     <input class="submit" type="submit" value="Register">  
                 </a> 
@@ -47,7 +47,7 @@
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="password"><br>
                 <a href="./consumerpage.html">
                     <input class="submit" type="submit" value="Login">  
                 </a>

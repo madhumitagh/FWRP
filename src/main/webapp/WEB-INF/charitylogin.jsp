@@ -35,7 +35,7 @@
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="password"><br>
                 <a href="./charitypage.html">
                     <input class="submit" type="submit" value="Register">  
                 </a>            </div>
@@ -44,7 +44,7 @@
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="password"><br>
                 <a href="./charitypage.html">
                     <input class="submit" type="submit" value="Login">  
                 </a>
