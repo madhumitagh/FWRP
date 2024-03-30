@@ -28,26 +28,18 @@ public class FWRPServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Food Waste Recycle Project</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Food Waste Recycle Project</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-            String messageType = request.getMethod();
-            String uri = request.getRequestURI();
-            
-            //if (uri.equals("/register")) {
-                request.getRequestDispatcher("/WEB-INF/welcome.jsp").forward(request, response);
-            //}
+        String messageType = request.getMethod();
+        String uri = request.getRequestURI();
+        System.out.println(uri);
+        if (uri.contains("retailerlogin")) {
+            request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
+        } else if (uri.contains("charitylogin")) {
+            request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
+        } else if (uri.contains("consumerlogin")) {
+            request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
