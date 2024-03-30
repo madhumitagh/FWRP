@@ -10,6 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.fwrp.model.factory.*;
+import com.fwrp.model.*;
+import com.fwrp.dao.*;
 
 /**
  *
@@ -32,7 +35,21 @@ public class FWRPServlet extends HttpServlet {
         String uri = request.getRequestURI();
         System.out.println(uri);
         if (uri.contains("retailerlogin")) {
-            request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
+            if (messageType.equals("GET")) {
+                request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
+            } else {
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                String name = request.getParameter("name");
+                Retailer retail = RetailerFactory.create(username, password, name);
+                
+                if (!RetailerDaoImpl.getInstance().check(username)) {
+                    RetailerDaoImpl.getInstance().enList(retail);
+                    response.sendRedirect("/WEB-INF/retailerlogin.jsp");
+                }  else {
+                    response.sendRedirect("/WEB-INF/retailerlogin.jsp?error=True");
+                }
+            }
         } else if (uri.contains("charitylogin")) {
             request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
         } else if (uri.contains("consumerlogin")) {

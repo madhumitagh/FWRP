@@ -30,25 +30,29 @@
         <div id="userlogin">
             <div class="userinfo">
                 <p class="info"><b>Register as a New User</b></p>
+                <form method="post" name="register">
                 <label for="retailername">Name of Retailer</label><br>
                 <input type="text" name="name"><br> 
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br> 
                 <label for="password">Password</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="password"><br>
                 <a href="./retailerpage.html">
                     <input class="submit" type="submit" value="Register">   
                 </a>
+                </form>
             </div>
             <div class="userinfo">
                 <p class="info"><b>Login as a Returning User</b></p>
+                <form method="post" name="login">
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="password"><br>
                 <a href="./retailerpage.html">
                     <input class="submit" type="submit" value="Login">  
                 </a>
+                </form>
             </div>
         </div>
         <footer>
