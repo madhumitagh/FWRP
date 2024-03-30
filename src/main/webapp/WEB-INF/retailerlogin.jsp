@@ -38,7 +38,7 @@
                 <label for="password">Password</label><br>
                 <input type="text"  name="password"><br>
                 <a href="./retailerpage.html">
-                    <input class="submit" type="submit" value="Register">   
+                    <input class="submitregistration" type="submit" value="Register">   
                 </a>
                 </form>
             </div>
@@ -46,11 +46,11 @@
                 <p class="info"><b>Login as a Returning User</b></p>
                 <form method="post" name="login">
                 <label for="username">Username</label><br>
-                <input type="text" name="username"><br>  
+                <input type="text" name="usernamelogin"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="password"><br>
+                <input type="text"  name="passwordlogin"><br>
                 <a href="./retailerpage.html">
-                    <input class="submit" type="submit" value="Login">  
+                    <input class="submitlogin" type="submit" value="Login">  
                 </a>
                 </form>
             </div>
