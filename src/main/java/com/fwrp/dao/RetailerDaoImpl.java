@@ -27,13 +27,13 @@ public class RetailerDaoImpl implements EntityDao {
         }
         return retailerDao;
     }
-    
+
     @Override
     public boolean authenticate(Entity entity) {
         Connection conn = DBConnection.getConnection();
         
         /* check username/password */
-        String query = String.format("SELECT * from retailer where " +
+        String query = String.format("SELECT * from retailers where " +
                                      "username=\"s\" and password=\"%s\"",
                                      entity.getUsername(), entity.getPassword());
         try {
@@ -51,11 +51,17 @@ public class RetailerDaoImpl implements EntityDao {
     public boolean enList(Entity entity) {
         Integer id;
         Connection conn = DBConnection.getConnection();
-        String query = String.format("INSERT into retailer (username,password," +
-                                     "name,subscribe) " +
-                                     "VALUES (\"%s\",\"%s\",\"%s\",,\"%s\")",
+        String query = String.format("INSERT into retailers (username,password," +
+                                     "name) " +
+                                     "VALUES (\"%s\",\"%s\",\"%s\")",
                                      entity.getUsername(), entity.getPassword(),
-                                     entity.getName(),entity.isSubscribe());
+                                     entity.getName());
+//        String query = String.format("INSERT into retailers (username,password," +
+//                             "name,subscribe) " +
+//                             "VALUES (\"%s\",\"%s\",\"%s\",,\"%s\")",
+//                             entity.getUsername(), entity.getPassword(),
+//                             entity.getName(),entity.isSubscribe());
+                
         try {
             PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 	    ps.executeUpdate();
@@ -77,7 +83,7 @@ public class RetailerDaoImpl implements EntityDao {
     public boolean deList(Entity entity) {
         if (this.check(entity.getUsername())) {
             Connection conn = DBConnection.getConnection();
-            String query = String.format("DELETE from retailer where id=%d",
+            String query = String.format("DELETE from retailers where id=%d",
                                          entity.getId());
             try {
                 PreparedStatement ps = conn.prepareStatement(query,
@@ -95,7 +101,7 @@ public class RetailerDaoImpl implements EntityDao {
     @Override
     public boolean subscriber(Entity entity) {
         Connection conn = DBConnection.getConnection();
-        String query = String.format("UPDATE from retailer SET subscriber=\"%s\" " +
+        String query = String.format("UPDATE from retailers SET subscriber=\"%s\" " +
                                      "where id=%d",
                                      entity.isSubscribe(), entity.getId());                
 
@@ -114,7 +120,7 @@ public class RetailerDaoImpl implements EntityDao {
     public boolean check(String username) {
         Connection conn = DBConnection.getConnection();
         /* check username */
-        String query = String.format("SELECT * from retailer where " +
+        String query = String.format("SELECT * from retailers where " +
                                      "username=\"s\"", username);
         try {
             PreparedStatement ps = conn.prepareStatement(query);		

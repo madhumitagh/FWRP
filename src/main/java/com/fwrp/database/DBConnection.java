@@ -30,6 +30,7 @@ import java.io.InputStream;
 public class DBConnection {
 	
     private static Connection connection = null;
+    private static String servDir = null;
     /**
      * Retrieves the database connection. If the connection is not established, it creates a new one.
      *
@@ -39,7 +40,7 @@ public class DBConnection {
     private static Properties getProperty() {
         Properties dbProp = null;
         // Load database properties
-        try (InputStream in = new FileInputStream("database.properties.cfg")){
+        try (InputStream in = new FileInputStream(servDir + "/WEB-INF/database.properties.cfg")){
             dbProp = new Properties();
             dbProp.load(in);
             in.close();
@@ -48,8 +49,18 @@ public class DBConnection {
         }
         return dbProp;
     }
+    
+    public static void setServerPath(String servDir) {
+        DBConnection.servDir = servDir;
+    }
+    
     public static Connection getConnection() {
 	if (connection == null) {
+            try {
+            Class.forName("com.mysql.jdbc.Driver"); 
+            } catch (ClassNotFoundException  e)  {
+                
+            }
             Properties prop = getProperty();
             
             if (prop != null) {
@@ -64,8 +75,9 @@ public class DBConnection {
                     connection = DriverManager.getConnection(serverUrl,
                                                 prop.getProperty("user"),
                                                 prop.getProperty("pass"));
+                    //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fwrp", "root", "password");
                 } catch (SQLException e) {
-                    System.out.println("Cannot Connect");
+                    System.out.println("Cannot Connect: " + e.getMessage());
                 }
                 System.out.println("Connect Successfull");
             }

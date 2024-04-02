@@ -5,7 +5,6 @@
 package com.fwrp.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ import com.fwrp.dao.*;
  * @author mrinm
  */
 public class FWRPServlet extends HttpServlet {
-
+    private static String servDir = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,11 +32,17 @@ public class FWRPServlet extends HttpServlet {
             throws ServletException, IOException {
         String messageType = request.getMethod();
         String uri = request.getRequestURI();
-        System.out.println(uri);
-        if (uri.contains("retailerlogin")) {
+        if (FWRPServlet.servDir == null) {
+            FWRPServlet.servDir = getServletContext().getRealPath("/");
+            DaoGlobals.setServDir(servDir);
+        }
+        if (uri.equals("/FWRP/JSP/retailerlogin")) {
             if (messageType.equals("GET")) {
                 request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
             } else {
+            }
+        } else if (uri.equals("/FWRP/JSP/retailerregister")) {
+                //Register
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 String name = request.getParameter("name");
@@ -45,14 +50,15 @@ public class FWRPServlet extends HttpServlet {
                 
                 if (!RetailerDaoImpl.getInstance().check(username)) {
                     RetailerDaoImpl.getInstance().enList(retail);
-                    response.sendRedirect("/WEB-INF/retailerlogin.jsp");
+                    request.setAttribute("ret_val", "Registration Success");
+                    request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);                    
                 }  else {
-                    response.sendRedirect("/WEB-INF/retailerlogin.jsp?error=True");
+                    request.setAttribute("ret_val", "Username Already Exists");
+                    request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
                 }
-            }
-        } else if (uri.contains("charitylogin")) {
+        } else if (uri.equals("/FWRP/JSP/charitylogin")) {
             request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
-        } else if (uri.contains("consumerlogin")) {
+        } else if (uri.equals("/FWRP/JSP/consumerlogin")) {
             request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
         }
     }
