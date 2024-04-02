@@ -27,24 +27,23 @@
             </ul>    
         </nav>
         <h2>Welcome Retailer!</h2><br>
+        ${ret_val}
         <div id="userlogin">
             <div class="userinfo">
                 <p class="info"><b>Register as a New User</b></p>
-                <form method="post" name="register">
+                <form method="post" name="register" action="/FWRP/JSP/retailerregister">
                 <label for="retailername">Name of Retailer</label><br>
                 <input type="text" name="name"><br> 
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br> 
                 <label for="password">Password</label><br>
                 <input type="text"  name="password"><br>
-                <a href="./retailerpage.html">
-                    <input class="submitregistration" type="submit" value="Register">   
-                </a>
+                <input class="submitregistration" type="submit" value="Register">
                 </form>
             </div>
             <div class="userinfo">
                 <p class="info"><b>Login as a Returning User</b></p>
-                <form method="post" name="login">
+                <form method="post" name="login" action="/FWRP/JSP/retailerlogin">
                 <label for="username">Username</label><br>
                 <input type="text" name="usernamelogin"><br>  
                 <label for="password">Password</label><br>
