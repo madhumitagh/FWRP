@@ -7,11 +7,14 @@ package com.fwrp.controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.fwrp.model.factory.*;
 import com.fwrp.model.*;
 import com.fwrp.dao.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -40,6 +43,18 @@ public class FWRPServlet extends HttpServlet {
             if (messageType.equals("GET")) {
                 request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
             } else {
+                String username = request.getParameter("usernamelogin");
+                String password = request.getParameter("passwordlogin");
+                Entity retail = RetailerFactory.create(username, password, "dummy");
+                if (RetailerDaoImpl.getInstance().authenticate(retail) != null) {
+                    request.setAttribute("ret_login_val", true);
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("retail", retail);
+                    response.sendRedirect("/FWRP/JSP/retailerpage");
+                } else {
+                    request.setAttribute("ret_login_val", false);
+                    request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
+                }
             }
         } else if (uri.equals("/FWRP/JSP/retailerregister")) {
                 //Register
@@ -50,12 +65,35 @@ public class FWRPServlet extends HttpServlet {
                 
                 if (!RetailerDaoImpl.getInstance().check(username)) {
                     RetailerDaoImpl.getInstance().enList(retail);
-                    request.setAttribute("ret_val", "Registration Success");
+                    request.setAttribute("ret_reg_val", true);
                     request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);                    
                 }  else {
-                    request.setAttribute("ret_val", "Username Already Exists");
+                    request.setAttribute("ret_reg_val", false);
                     request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
                 }
+        } else if (uri.equals("/FWRP/JSP/retailerpage")) {
+            if (request.getSession().getAttribute("retail") != null) {
+                Entity ent = (Entity)request.getSession().getAttribute("retail");
+                ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
+                request.setAttribute("item_list", itemsList);
+                request.getRequestDispatcher("/WEB-INF/retailerpage.jsp").forward(request, response);
+            } else {
+                request.setAttribute("ret_login_val", false);
+                request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
+            }
+        } else if (uri.equals("/FWRP/JSP/retailerinsert")) {
+            if (request.getSession().getAttribute("retail") != null) {
+                Entity ent = (Entity)request.getSession().getAttribute("retail");
+                //Test Data
+                Stock stock = new Stock(1, ent.getId(), new Date(), 50.88, 50, true);
+                StockDaoImpl.getInstance().insert(stock);
+                ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
+                request.setAttribute("item_list", itemsList);
+                request.getRequestDispatcher("/WEB-INF/retailerpage.jsp").forward(request, response);
+            } else {
+                request.setAttribute("ret_login_val", false);
+                request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
+            }
         } else if (uri.equals("/FWRP/JSP/charitylogin")) {
             request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
         } else if (uri.equals("/FWRP/JSP/consumerlogin")) {
