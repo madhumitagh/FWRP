@@ -125,7 +125,7 @@ public class RetailerDaoImpl implements EntityDao {
         Connection conn = DBConnection.getConnection();
         /* check username */
         String query = String.format("SELECT * from retailers where " +
-                                     "username=\"s\"", username);
+                                     "username=\"%s\"", username);
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
