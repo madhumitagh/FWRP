@@ -5,6 +5,7 @@
 package com.fwrp.dao;
 
 import com.fwrp.model.Item;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,4 +15,5 @@ public interface ItemDao {
     public boolean insert(Item item);
     public boolean delete(Integer id);
     public boolean check(Integer id);
+    public ArrayList<Item> getAll();
 }

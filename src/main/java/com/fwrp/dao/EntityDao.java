@@ -9,7 +9,7 @@ import com.fwrp.model.Entity;
  * @author mrinm
  */
 public interface EntityDao {
-    public boolean authenticate(Entity entity);
+    public Entity authenticate(Entity entity);
     public boolean check(String username);
     public boolean enList(Entity entity);
     public boolean deList(Entity entity);
