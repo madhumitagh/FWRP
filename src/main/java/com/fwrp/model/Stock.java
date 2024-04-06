@@ -10,12 +10,21 @@ import java.util.Date;
  * @author mrinm
  */
 public class Stock {
-    private Item item;
-    private Retailer retailer;
+    private Integer itemId;
+    private Integer retailerId;
     private Date expiryDate;
     private double discountedPrice;
     private Integer quantity;
     private boolean surplus;
+    
+    public Stock(int itemId, int retailerId, Date expiryDate, double discountedPrice, Integer quantity, boolean surplus) {
+        this.itemId = itemId;
+        this.retailerId = retailerId;
+        this.expiryDate = expiryDate;
+        this.discountedPrice = discountedPrice;
+        this.quantity = quantity;
+        this.surplus = surplus;
+    }
 
     public boolean IsSurplus() {
         return surplus;
@@ -25,20 +34,20 @@ public class Stock {
         this.surplus = surplus;
     }
 
-    public Item getItem() {
-        return item;
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
-    public Retailer getRetailer() {
-        return retailer;
+    public Integer getRetailerId() {
+        return retailerId;
     }
 
-    public void setRetailer(Retailer retailer) {
-        this.retailer = retailer;
+    public void setRetailerId(int retailerId) {
+        this.retailerId = retailerId;
     }
 
     public Date getExpiryDate() {
