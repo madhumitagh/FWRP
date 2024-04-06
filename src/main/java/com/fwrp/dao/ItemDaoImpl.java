@@ -4,12 +4,14 @@
  */
 package com.fwrp.dao;
 import com.fwrp.model.Item;
+import com.fwrp.model.factory.ItemFactory;
 import com.fwrp.database.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -71,5 +73,26 @@ public class ItemDaoImpl implements ItemDao {
             }
         }
         return true;
+    }
+    
+    @Override
+    public ArrayList<Item> getAll() {
+        ArrayList items = new ArrayList<Item>();
+        Connection conn = DBConnection.getConnection();
+        String query = String.format("SELECT * from item");
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);		
+	    ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                items.add(ItemFactory.createWithId(rs.getString("Item_Type"),
+                                                   rs.getString("Name"),
+                                                   rs.getInt("ItemID")));
+            }
+            return items;
+        } catch (SQLException e) {
+            System.out.println("DB delete Failed for " + query +
+                               " Message: " + e.getMessage());
+	}
+	return items;
     }
 }
