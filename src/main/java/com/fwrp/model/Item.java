@@ -9,6 +9,18 @@ package com.fwrp.model;
  * @author mrinm
  */
 public class Item {
+
+    public Item(String Itemtype, String Name) {
+        this.Itemtype = Itemtype;
+        this.Name = Name;
+    }
+    
+    public Item(String Itemtype, String Name, Integer Id) {
+        this.Itemtype = Itemtype;
+        this.Name = Name;
+        this.Id = Id;
+    }
+    
     private String Itemtype;
     private String Name;
     private Integer Id;
