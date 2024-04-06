@@ -28,22 +28,27 @@ public class IndividualDaoImpl implements EntityDao {
     }
     
     @Override
-    public boolean authenticate(Entity entity) {
+    public Entity authenticate(Entity entity) {
         Connection conn = DBConnection.getConnection();
         
         /* check username/password */
         String query = String.format("SELECT * from individual where " +
-                                     "username=\"s\" and password=\"%s\"",
+                                     "Username=\"%s\" and Password=\"%s\"",
                                      entity.getUsername(), entity.getPassword());
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
-            return rs.next();
+            if (rs.next()) {
+                entity.setName(rs.getString("Name"));
+                entity.setId(rs.getInt("Individual_ID"));
+                entity.setSubscribe(rs.getBoolean("Subscribe"));
+                return entity;
+            }
         } catch (SQLException e) {
             System.out.println("DB delete Failed for " + query +
                                " Message: " + e.getMessage());
 	}
-	return false;
+	return null;
     }
 
     @Override
