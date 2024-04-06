@@ -29,22 +29,26 @@ public class RetailerDaoImpl implements EntityDao {
     }
 
     @Override
-    public boolean authenticate(Entity entity) {
+    public Entity authenticate(Entity entity) {
         Connection conn = DBConnection.getConnection();
         
         /* check username/password */
         String query = String.format("SELECT * from retailers where " +
-                                     "username=\"s\" and password=\"%s\"",
+                                     "username=\"%s\" and password=\"%s\"",
                                      entity.getUsername(), entity.getPassword());
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
-            return rs.next();
+            if (rs.next()) {
+                entity.setName(rs.getString("name"));
+                entity.setId(rs.getInt("Retailer_ID"));
+                return entity;
+            }
         } catch (SQLException e) {
-            System.out.println("DB delete Failed for " + query +
+            System.out.println("DB Auth Failed for " + query +
                                " Message: " + e.getMessage());
 	}
-	return false;
+	return null;
     }
 
     @Override

@@ -4,6 +4,7 @@
  */
 package com.fwrp.dao;
 import com.fwrp.model.Stock;
+import java.util.ArrayList;
 /**
  *
  * @author mrinm
@@ -13,4 +14,5 @@ public interface StockDao {
     public boolean delete(Integer itemId, Integer retailerId);
     public boolean update(Stock stock);
     public boolean markSurplus(Stock stock, boolean surplus);
+    public ArrayList<Stock> getAll(Integer retailerId);
 }
