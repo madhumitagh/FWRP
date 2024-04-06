@@ -27,7 +27,22 @@
             </ul>    
         </nav>
         <h2>Welcome Retailer!</h2><br>
-        ${ret_val}
+        <% boolean ret_val = false;
+           try {
+            ret_val = (boolean)request.getAttribute("ret_reg_val");
+           if (ret_val) { %>
+        Registration Success
+        <% } else { %>
+        Username Exists
+       <% }
+        } catch (Exception e) {} 
+        try {
+            ret_val = (boolean)request.getAttribute("ret_login_val");
+            if (ret_val == false) { %>
+                Authentication Error
+         <% }
+        } catch (Exception e) {} 
+       %>        
         <div id="userlogin">
             <div class="userinfo">
                 <p class="info"><b>Register as a New User</b></p>
