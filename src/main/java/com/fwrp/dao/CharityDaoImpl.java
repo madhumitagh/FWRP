@@ -29,22 +29,27 @@ public class CharityDaoImpl implements EntityDao {
     }
     
     @Override
-    public boolean authenticate(Entity entity) {
+    public Entity authenticate(Entity entity) {
         Connection conn = DBConnection.getConnection();
         
         /* check username/password */
         String query = String.format("SELECT * from charity where " +
-                                     "username=\"s\" and password=\"%s\"",
+                                     "username=\"%s\" and password=\"%s\"",
                                      entity.getUsername(), entity.getPassword());
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
-            return rs.next();
+            if (rs.next()) {
+                entity.setName(rs.getString("Name"));
+                entity.setId(rs.getInt("Charity_ID"));
+                entity.setSubscribe(rs.getBoolean("Subscribe"));
+                return entity;
+            }
         } catch (SQLException e) {
             System.out.println("DB delete Failed for " + query +
                                " Message: " + e.getMessage());
 	}
-	return false;
+	return null;
     }
 
     @Override
