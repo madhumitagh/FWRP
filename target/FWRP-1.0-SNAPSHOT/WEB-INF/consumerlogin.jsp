@@ -21,11 +21,13 @@
         <nav>
             <ul id="navbar">
             <li class="navitem"><a href="./index.html" >Home</a></li>
-            <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
-            <li class="navitem"><a class="active" href="./consumerlogin.html">Consumer</a></li>
-            <li class="navitem"><a href="./charitylogin.html">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/retailerlogin">Retailer</a></li>
+            <li class="navitem"><a class="active" href="./JSP/consumerlogin">Consumer</a></li>
+            <li class="navitem"><a href="./JSP/charitylogin">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
             </ul>    
         </nav>
+      
         <h2>Welcome Consumer!</h2><br>
         <% boolean ret_val = false;
            try {
@@ -50,7 +52,7 @@
                 <label for="firstname">First Name</label><br>
                 <input type="text" name="firstname"><br>  
                 <label for="lastname">Last Name</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="lastname"><br>
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
