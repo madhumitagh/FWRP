@@ -1,7 +1,7 @@
 <%-- 
     Document   : welcome.jsp
     Created on : Mar. 29, 2024, 6:58:13 p.m.
-    Author     : shilp
+    Author     : shilpi
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,11 +20,13 @@
         </header>
         <nav>
             <ul id="navbar">
-            <li class="navitem"><a href="./index.html" >Home</a></li>
-            <li class="navitem"><a class="active" href="./retailerlogin.html">Retailer</a></li>
-            <li class="navitem"><a href="./consumerlogin.html">Consumer</a></li>
-            <li class="navitem"><a href="./charitylogin.html">Charitable Organization</a></li>
-            </ul>    
+            <li class="navitem"><a href="./JSP/retailerlogin" >Home</a></li>
+            <li class="navitem"><a class="active" href="./JSP/retailerlogin">Retailer</a></li>
+            <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
+            <li class="navitem"><a href="./JSP/charitylogin">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
+            <li class="navitem"><a href="./JSP/purchasepage">Purchase/Claim</a></li>
+            </ul>     
         </nav>
         <h2>Welcome Retailer!</h2><br>
         <% boolean ret_val = false;

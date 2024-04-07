@@ -18,7 +18,7 @@ import java.util.Date;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class FWRPServlet extends HttpServlet {
     private static String servDir = null;
@@ -96,9 +96,19 @@ public class FWRPServlet extends HttpServlet {
             }
         } else if (uri.equals("/FWRP/JSP/charitylogin")) {
             request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
+            
         } else if (uri.equals("/FWRP/JSP/consumerlogin")) {
             request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
+
+        } else if (uri.equals("/FWRP/JSP/consumption")) {
+            request.getRequestDispatcher("/WEB-INF/consumptionpage.jsp").forward(request, response);
+            
+        } else if (uri.equals("/FWRP/JSP/purchase/claim")) {
+            request.getRequestDispatcher("/WEB-INF/purchasepage.jsp").forward(request, response);
+            
+            
         }
+        
     }
 
 
