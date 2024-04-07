@@ -51,7 +51,6 @@
                     <td><input type="text" name="pricePurchased" required></td>
                 </tr>
             </table>
-            <input type="submit" value="Submit">
         </form>
     </main>
     <footer>
