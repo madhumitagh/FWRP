@@ -30,41 +30,27 @@
             
         <main>
             <h2>Consumed Items Entry</h2>
-            <form>
-                <table>
-                    <tr>
-                        <th>Item ID</th>
-                        <th>Retailer ID</th>
-                        <th>Expiration Date</th>
-                        <th>Consumer Type</th>
-                        <th>Consumer ID</th>
-                        <th>Quantity</th>
-                        <th>Date Purchased</th>
-                        <th>Price Purchased</th>
-                    </tr>
-                    <tr>
-                        <td><input type="number" name="itemId" required></td>
-                        <td><input type="number" name="retailerId" required></td>
-                        <td><input type="date" name="expirationDate" required></td>
-                        <td>
-                            <select name="consumerType" required>
-                                <option value="type1">Individual</option>
-                                <option value="type2">Charity</option>
-                            
+             <form method="post" name="PurchaseForm" action="/FWRP/JSP/consumptionpage">
+            <label for="expirationDate">Expiration Date:</label>
+            <input type="date" name="expirationDate" readonly value="YYYY-MM-DD"><br><br>
+            
+            <label for="consumerType">Consumer Type:</label>
+            <input type="text" name="consumerType" value="Type"><br><br>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" min="1"><br><br>
+            
+            <label for="datePurchased">Date Purchased:</label>
+            <input type="date" name="datePurchased"
+                   
+            <label for="price purchased">Price Purchased:</label>
+            <input typr="number" name="PricePurchased"
 
-                            </select>
-                        </td>
-                        <td><input type="number" name="consumerId" required></td>
-                        <td><input type="number" name="quantity" min="1" required></td>
-                        <td><input type="date" name="datePurchased" required></td>
-                        <td><input type="text" name="pricePurchased" required></td>
-                    </tr>
-                </table>
-                <input type="submit" value="Submit">
-            </form>
-        </main>
-        <footer>
-            <p>&copy; Final Project, 2024</p>
-        </footer>
-    </body>
-    </html>
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+    <footer>
+        <p>&copy; Final Project, 2024</p>
+    </footer>
+</body>
+</html>
