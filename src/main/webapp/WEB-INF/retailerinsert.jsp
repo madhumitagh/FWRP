@@ -38,6 +38,7 @@
                 <input type="text"  name="price"><br>
                 <label for="quantity">Quantity</label><br>
                 <input type="number"  name="quantity"><br>
+                <input type="number" name="quantity" min="1"><br><br>
                 <label for="surplus">Surplus</label><br>
                 <input type="checkbox"  name="surplus"><br>
                 <input type="submit"  name="submit"><br>

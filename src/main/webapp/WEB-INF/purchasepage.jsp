@@ -29,18 +29,16 @@
     <main>
         <main>
         <h2>Purchase/Claim Entry Form</h2>
-        <form id="PurchaseForm">
+         
+        <form method="post" name="Purchase Form" action="/FWRP/JSP/purchasepage">
             <label for="itemType">Item Type:</label>
-            <select id="itemType" name="itemType" required>
-                <option value="food">Food</option>
-                <option value="beverage">Beverage</option>
-            </select><br><br>
-            
+            <input type="text" id="itemType" name="itemType" readonly value="Predefined Item Type"><br>                                                                    input type text read only == tru
+           
             <label for="itemName">Item Name:</label>
-            <input type="text" id="itemName" name="itemName" required><br><br>
+            <input type="text" id="itemName" name="itemName" readonly value="Predefined Item Name"><br><br>
             
             <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="" max="" required><br><b
+            <input type="number" name="quantity" min="1"><br><b>
             
             <input type="submit" value="Submit">
         </form>
