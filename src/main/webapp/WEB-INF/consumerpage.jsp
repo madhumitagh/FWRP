@@ -33,9 +33,7 @@
          <% Entity en = (Entity)session.getAttribute("individual");%>
         <h2>Welcome Consumer!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
         <form method="post" action="/FWRP/JSP/consumerpurchase">
-        <div class=buttons2>
-            <input name="purchase" value="Purchase" type="submit">
-        </div>
+        
         </form>
         <table border="1">
             <tr>
@@ -44,7 +42,7 @@
                 <th>Expiration</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Surplus</th>
+                <th>Purchase</th>
             </tr>
                 <% ArrayList<Stock> list = (ArrayList)request.getAttribute("item_list"); 
                     for (Stock st: list) { %>
@@ -54,7 +52,12 @@
                 <td><%=st.getExpiryDate()%></td>
                 <td><%=st.getQuantity()%></td>
                 <td><%=st.getDiscountedPrice()%></td>
-                <td><%=st.IsSurplus()%></td>
+                <td>
+                    <div class=buttons>
+            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getExpiryDateStr()%>" type="submit">Purchase</button>
+            
+        </div>
+                </td>
             </tr>
             <% } %>
         </table>
