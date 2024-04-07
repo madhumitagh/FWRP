@@ -34,7 +34,7 @@
         <h2>Welcome Consumer!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
         <form method="post" action="/FWRP/JSP/purchasepage">
         
-        </form>
+        
         <table border="1">
             <tr>
                 <th>Item Id</th>
@@ -61,6 +61,7 @@
             </tr>
             <% } %>
         </table>
+        </form>
           
         <footer>
             <p>&copy; Final Project, 2024</p>
