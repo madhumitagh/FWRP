@@ -48,27 +48,29 @@
         <div id="userlogin">
             <div class="userinfo">
                 <p class="info"><b>Register as a New User</b></p>
-                <form method="post" name="register" action="/FWRP/JSP/charityegister">
+                <form method="post" name="register" action="/FWRP/JSP/charityregister">
                 <label for="charityname">Name of Charitable Organization</label><br>
-                <input type="text" name="firstname"><br>  
+                <input type="text" name="name"><br>  
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
                 <input type="text"  name="password"><br>
-                <a href="./charitypage.html">
+               
                     <input class="submit" type="submit" value="Register">  
-                </a>
+               
                 </form>
             </div>
+            
             <div class="userinfo">
                 <p class="info"><b>Login as a Returning User</b></p>
+                <form method="post" name="login" action="/FWRP/JSP/charitylogin">
                 <label for="username">Username</label><br>
-                <input type="text" name="username"><br>  
+                <input type="text" name="usernamelogin"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="password"><br>
-                <a href="./charitypage.html">
+                <input type="text"  name="passwordlogin"><br>
+            
                     <input class="submit" type="submit" value="Login">  
-                </a>
+                 </form>
             </div>
         </div>
         <footer>

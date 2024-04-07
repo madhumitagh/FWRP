@@ -99,7 +99,7 @@ public class FWRPServlet extends HttpServlet {
             
         // Charity Invocations
         } else if (uri.equals("/FWRP/JSP/charitylogin")) {
-           // request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
+           //request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
                         if (messageType.equals("GET")) {
                 request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
             } else {
@@ -151,7 +151,7 @@ public class FWRPServlet extends HttpServlet {
                 request.setAttribute("item_list", itemsList);
                 request.getRequestDispatcher("/WEB-INF/charitypage.jsp").forward(request, response);
             } else {
-                request.setAttribute("ret_login_val", false);
+                request.setAttribute("cha_login_val", false);
                 request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
             }
             
