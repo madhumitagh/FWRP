@@ -181,6 +181,7 @@ public class FWRPServlet extends HttpServlet {
                             stock.setQuantity(Integer.parseInt(request.getParameter("quantity")));
                             if (request.getParameter("surplus") != null) {
                                 stock.setSurplus(request.getParameter("surplus").equals("on"));    
+        
                             } else {
                                 stock.setSurplus(false);
                             }
