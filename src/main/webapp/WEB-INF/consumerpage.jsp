@@ -37,23 +37,24 @@
             <input name="purchase" value="Purchase" type="submit">
         </div>
         </form>
-        <table>
+        <table border="1">
             <tr>
                 <th>Item Id</th>
+                <th>Retailer Id</th>
                 <th>Expiration</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Surplus</th>
-                <th>Actions</th>
             </tr>
                 <% ArrayList<Stock> list = (ArrayList)request.getAttribute("item_list"); 
                     for (Stock st: list) { %>
              <tr>
                 <td><%=st.getItemId()%></td>
+                <td><%=st.getRetailerId()%></td>
                 <td><%=st.getExpiryDate()%></td>
                 <td><%=st.getQuantity()%></td>
                 <td><%=st.getDiscountedPrice()%></td>
-                <td><%=st.IsSurplus()%></td>
+                <td><%=st.IsSurplus()%></td>s
             </tr>
             <% } %>
         </table>

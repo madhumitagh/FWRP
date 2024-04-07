@@ -15,4 +15,5 @@ public interface StockDao {
     public boolean update(Stock stock);
     public boolean markSurplus(Stock stock, boolean surplus);
     public ArrayList<Stock> getAll(Integer retailerId);
+    public ArrayList<Stock> getAll();
 }

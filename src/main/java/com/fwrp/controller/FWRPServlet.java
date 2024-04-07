@@ -183,7 +183,7 @@ public class FWRPServlet extends HttpServlet {
                 Entity individual = IndividualFactory.getInstance().getConsumer(username, password, name);
                 
                 if (!IndividualDaoImpl.getInstance().check(username)) {
-                    RetailerDaoImpl.getInstance().enList(individual);
+                    IndividualDaoImpl.getInstance().enList(individual);
                     request.setAttribute("ret_reg_val", true);
                     request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);                    
                 }  else {
@@ -192,8 +192,8 @@ public class FWRPServlet extends HttpServlet {
                 }
         } else if (uri.equals("/FWRP/JSP/consumerpage")) {
             if (request.getSession().getAttribute("individual") != null) {
-                Entity ent = (Entity)request.getSession().getAttribute("retail");
-                ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
+                Entity ent = (Entity)request.getSession().getAttribute("individual");
+                ArrayList itemsList = StockDaoImpl.getInstance().getAll();
                 request.setAttribute("item_list", itemsList);
                 request.getRequestDispatcher("/WEB-INF/consumerpage.jsp").forward(request, response);
             } else {
