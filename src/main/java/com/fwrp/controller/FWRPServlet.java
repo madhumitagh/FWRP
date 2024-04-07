@@ -103,7 +103,10 @@ public class FWRPServlet extends HttpServlet {
                         Date expDate = fmt.parse(request.getParameter("exp_date"));
                         Double price = Double.valueOf(request.getParameter("price"));
                         int quantity = Integer.parseInt(request.getParameter("quantity"));
-                        boolean surplus = request.getParameter("surplus").equals("on");
+                        boolean surplus = false;
+                        if (request.getParameter("surplus") != null) {
+                            surplus = request.getParameter("surplus").equals("on");
+                        }
                         Item item = ItemDaoImpl.getInstance().check(itemType, itemName);
                         if (item == null) {
                             item = ItemFactory.create(itemType, itemName);
@@ -176,7 +179,11 @@ public class FWRPServlet extends HttpServlet {
                             stock = StockFactory.create(item.getId(), ent.getId(), expDate);    
                             stock.setDiscountedPrice(Double.valueOf(request.getParameter("price")));
                             stock.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-                            stock.setSurplus(request.getParameter("surplus").equals("on"));
+                            if (request.getParameter("surplus") != null) {
+                                stock.setSurplus(request.getParameter("surplus").equals("on"));    
+                            } else {
+                                stock.setSurplus(false);
+                            }
                             StockDaoImpl.getInstance().update(stock);
                             ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
                             request.setAttribute("item_list", itemsList);
