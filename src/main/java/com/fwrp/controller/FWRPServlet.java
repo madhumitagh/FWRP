@@ -328,7 +328,7 @@ public class FWRPServlet extends HttpServlet {
         } else if (uri.equals("/FWRP/JSP/consumptionpage")) {
             request.getRequestDispatcher("/WEB-INF/consumptionpage.jsp").forward(request, response);
             
-        } else if (uri.equals("/FWRP/JSP/purchase/claim")) {
+        } else if (uri.equals("/FWRP/JSP/purchasepage")) {
             request.getRequestDispatcher("/WEB-INF/purchasepage.jsp").forward(request, response);
             
             
