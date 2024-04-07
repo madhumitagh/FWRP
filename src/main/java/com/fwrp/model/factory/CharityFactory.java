@@ -13,6 +13,15 @@ import com.fwrp.model.Charity;
  */
 public class CharityFactory extends ConsumerFactory {
 
+    private static CharityFactory charityFactory = null;
+    
+    public static CharityFactory getInstance() {
+        if (charityFactory == null) {
+            charityFactory = new CharityFactory();
+        }
+        return charityFactory;
+    }
+    
     @Override
     public Entity getConsumer(String username, String password, String name) {
         return new Charity(username, password, name);
