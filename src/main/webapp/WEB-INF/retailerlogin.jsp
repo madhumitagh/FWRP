@@ -25,7 +25,6 @@
             <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
             <li class="navitem"><a href="./JSP/charitylogin">Charitable Organization</a></li>
             <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
-            <li class="navitem"><a href="./JSP/purchasepage">Purchase/Claim</a></li>
             </ul>     
         </nav>
         <h2>Welcome Retailer!</h2><br>
