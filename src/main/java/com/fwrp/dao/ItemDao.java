@@ -15,5 +15,6 @@ public interface ItemDao {
     public boolean insert(Item item);
     public boolean delete(Integer id);
     public boolean check(Integer id);
+    public Item check(String itemType, String itemName);
     public ArrayList<Item> getAll();
 }

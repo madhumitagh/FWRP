@@ -31,9 +31,9 @@
           </nav>
         <% Entity en = (Entity)session.getAttribute("retail");%>    
         <h2>Welcome Retailer <%=en.getName()%>! ID:<%=en.getId()%></h2><br>
-        <form method="post" action="/FWRP/JSP/retailerinsert">
+        <form action="/FWRP/JSP/retailerinsert">
         <div class=buttons>
-            <input name="insert" value="Insert Item" type="submit">
+            <button name="insert" type="submit">Insert Item</button>
         </div>
         </form>
         <table>
@@ -53,10 +53,12 @@
     <td><%=st.getQuantity()%></td>
     <td><%=st.getDiscountedPrice()%></td>
     <td><%=st.IsSurplus()%></td>
+    <td>
           <div class=buttons>
             <button class="item">Update Item</button>
             <button class="item">Delete Item</button>
         </div>
+    </td>
   </tr>
   <% } %>
 </table>

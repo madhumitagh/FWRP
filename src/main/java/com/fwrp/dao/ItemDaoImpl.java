@@ -19,6 +19,15 @@ import java.util.ArrayList;
  */
 public class ItemDaoImpl implements ItemDao {
 
+    private static ItemDaoImpl itemDao = null;
+    
+    public static ItemDaoImpl getInstance() {
+        if (itemDao == null) {
+            itemDao =  new ItemDaoImpl();
+        }
+        return itemDao;
+    }
+    
     @Override
     public boolean insert(Item item) {
         Integer item_id;
@@ -55,6 +64,25 @@ public class ItemDaoImpl implements ItemDao {
                                " Message: " + e.getMessage());
 	}
 	return false;
+    }
+
+    @Override
+    public Item check(String itemType, String itemName) {
+        Connection conn = DBConnection.getConnection();
+        Item item = null;
+        String query = String.format("SELECT * from item where Item_Type=\"%s\" and Item_Name=\"%s\"",
+                                     itemType,itemName);
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);		
+	    ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                item = ItemFactory.createWithId(itemType, itemName, rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            System.out.println("DB delete Failed for " + query +
+                               " Message: " + e.getMessage());
+	}
+	return item;
     }
 
     @Override
