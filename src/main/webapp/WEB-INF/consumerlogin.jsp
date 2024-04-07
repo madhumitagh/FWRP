@@ -52,7 +52,7 @@
                 <label for="firstname">First Name</label><br>
                 <input type="text" name="firstname"><br>  
                 <label for="lastname">Last Name</label><br>
-                <input type="text"  name="lastName"><br>
+                <input type="text"  name="lastname"><br>
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
