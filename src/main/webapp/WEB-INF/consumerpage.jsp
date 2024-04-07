@@ -32,7 +32,7 @@
         
          <% Entity en = (Entity)session.getAttribute("individual");%>
         <h2>Welcome Consumer!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
-        <form method="post" action="/FWRP/JSP/consumerpurchase">
+        <form method="post" action="/FWRP/JSP/purchasepage">
         
         </form>
         <table border="1">
@@ -54,7 +54,7 @@
                 <td><%=st.getDiscountedPrice()%></td>
                 <td>
                     <div class=buttons>
-            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getExpiryDateStr()%>" type="submit">Purchase</button>
+            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getRetailerId()+ "_" + st.getExpiryDateStr()%>" type="submit">Purchase</button>
             
         </div>
                 </td>

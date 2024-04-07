@@ -329,11 +329,12 @@ public class FWRPServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/consumptionpage.jsp").forward(request, response);
             
         } else if (uri.equals("/FWRP/JSP/purchasepage")) {
-            request.getRequestDispatcher("/WEB-INF/purchasepage.jsp").forward(request, response);
-            
-            
-        }
-        
+            if (request.getSession().getAttribute("charity") != null) {
+                // Charity
+            } else if (request.getSession().getAttribute("individual") != null) {
+                // Consumer/Individual
+            }
+        }   
     }
 
 
