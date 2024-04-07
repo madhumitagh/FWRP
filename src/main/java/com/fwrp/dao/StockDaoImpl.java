@@ -134,4 +134,35 @@ public class StockDaoImpl implements StockDao {
 	}
 	return stocks;
     }
+    
+    @Override
+    public ArrayList<Stock> getAll() {
+        ArrayList stocks = new ArrayList<Stock>();
+        Connection conn = DBConnection.getConnection();
+        String query = String.format("SELECT * from stock");
+                                     
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);		
+	    ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+                
+                try {
+                    stocks.add(new Stock(Integer.parseInt(rs.getString("Item_Id")),
+                            Integer.parseInt(rs.getString("Retailer_Id")),
+                            fmt.parse(rs.getString("Expiration_Date")),
+                            Double.parseDouble(rs.getString("Discounted_Price")),
+                            Integer.valueOf(rs.getString("Quantity")),
+                            Boolean.parseBoolean(rs.getString("Surplus"))));
+                } catch (ParseException ex) {
+                    Logger.getLogger(StockDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return stocks;
+        } catch (SQLException e) {
+            System.out.println("DB delete Failed for " + query +
+                               " Message: " + e.getMessage());
+	}
+	return stocks;
+    }
 }

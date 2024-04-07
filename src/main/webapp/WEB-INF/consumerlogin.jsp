@@ -62,9 +62,9 @@
                 <p class="info"><b>Login as a Returning Consumer</b></p>
                 <form method="post" name="register" action="/FWRP/JSP/consumerlogin">
                 <label for="username">Username</label><br>
-                <input type="text" name="username"><br>  
+                <input type="text" name="usernamelogin"><br>  
                 <label for="password">Password</label><br>
-                <input type="text"  name="password"><br>
+                <input type="text"  name="passwordlogin"><br>
                 <a href="./consumerpage.html">
                     <input class="submit" type="submit" value="Login">  
                 </a>
