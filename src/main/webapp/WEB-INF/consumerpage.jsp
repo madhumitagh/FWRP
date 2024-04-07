@@ -54,7 +54,7 @@
                 <td><%=st.getExpiryDate()%></td>
                 <td><%=st.getQuantity()%></td>
                 <td><%=st.getDiscountedPrice()%></td>
-                <td><%=st.IsSurplus()%></td>s
+                <td><%=st.IsSurplus()%></td>
             </tr>
             <% } %>
         </table>
