@@ -18,7 +18,7 @@ import com.fwrp.model.*;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class ConsumerDaoImpl implements ConsumerDao {
 

@@ -7,7 +7,7 @@ import com.fwrp.model.Entity;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public abstract class ConsumerFactory {
     public abstract Entity getConsumer(String username,

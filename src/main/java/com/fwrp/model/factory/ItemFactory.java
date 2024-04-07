@@ -8,7 +8,7 @@ import com.fwrp.model.Item;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class ItemFactory {
     
