@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class Stock {
     private Integer itemId;

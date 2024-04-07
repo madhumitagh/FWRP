@@ -9,7 +9,7 @@ import com.fwrp.model.Charity;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class CharityFactory extends ConsumerFactory {
 

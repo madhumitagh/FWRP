@@ -6,7 +6,7 @@ package com.fwrp.model;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public interface Consumer {
     public boolean purchase(Item item, Integer quantity);

@@ -1,7 +1,7 @@
 <%-- 
     Document   : retailerinsert
     Created on : Apr 6, 2024, 11:12:35 PM
-    Author     : mrinm
+    Author     : Madhumita, Piyalee, Pooja, Shilpi
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

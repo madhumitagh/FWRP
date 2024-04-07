@@ -9,7 +9,7 @@ import com.fwrp.model.Entity;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class IndividualFactory extends ConsumerFactory {
 

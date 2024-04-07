@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class Consumption {
     private int itemId;

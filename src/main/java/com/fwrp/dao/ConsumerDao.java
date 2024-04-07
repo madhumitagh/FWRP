@@ -8,7 +8,7 @@ import com.fwrp.model.Consumption;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public interface ConsumerDao {
     ArrayList<Consumption> getAll();
