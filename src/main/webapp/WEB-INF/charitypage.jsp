@@ -23,18 +23,19 @@
         <nav>
             <ul id="navbar">
             <li class="navitem"><a href="./index.html" >Home</a></li>
-            <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
-            <li class="navitem"><a href="./consumerlogin.html">Consumer</a></li>
+            <li class="navitem"><a href="./JSP/retailerlogin">Retailer</a></li>
+            <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
+            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
             <li class="navitem"><a class="active">Charitable Organization</a></li>
             </ul>    
         </nav>
+        
          <% Entity en = (Entity)session.getAttribute("charity");%>    
         <h2>Welcome Charitable Organization!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
         <form method="post" action="/FWRP/JSP/charityclaim">
             
         <div class=buttons2>
-            <button class="item">View Item</button>
-            <button class="item">Claim Item</button>
+            <input name="claim" value="claim" type="submit">
         </div>
             </form>
         <table>

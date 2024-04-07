@@ -21,12 +21,20 @@
         <nav>
             <ul id="navbar">
                 <li class="navitem"><a href="./index.html">Home</a></li>
-                <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
-                <li class="navitem"><a href="./consumerlogin.html">Consumer</a></li>
-                <li class="navitem"><a href="./charitylogin.html">Charitable Organization</a></li>
+                <li class="navitem"><a href="./JSP/retailerlogin">Retailer</a></li>
+                <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
+                <li class="navitem"><a href="./JSP/charitylogin">Charitable Organization</a></li>
                 <li class="navitem"><a class="active">Consumption</a></li>
             </ul>    
         </nav>
+       
+        <h2>Welcome to the Food Waste Reduction Platform!</h2><br>
+            <p class="info">Please select your user type to continue:</p>
+            <a href="./JSP/retailerlogin" class="buttongroup">Retailer</a><br>
+            <a href="./JSP/consumerlogin" class="buttongroup">Consumer</a><br>
+            <a href="./JSP/charitylogin" class="buttongroup">Charitable Organization</a><br>
+            <a href="./JSP/consumptionpage" class="buttongroup">Consumption</a><br>
+            
         <main>
             <h2>Consumed Items Entry</h2>
             <form>
