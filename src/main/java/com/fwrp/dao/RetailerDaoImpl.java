@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author mrinm
+ * @author madhumita,piyalee,pooja,shilpi
  */
 public class RetailerDaoImpl implements EntityDao {
 

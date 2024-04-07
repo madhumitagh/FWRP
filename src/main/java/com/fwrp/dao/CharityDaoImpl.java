@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author mrinm
+ * @author madhumita
  */
 public class CharityDaoImpl implements EntityDao {
     private static CharityDaoImpl charityDao = null;

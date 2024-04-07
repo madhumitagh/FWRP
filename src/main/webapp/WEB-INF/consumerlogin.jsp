@@ -27,9 +27,26 @@
             </ul>    
         </nav>
         <h2>Welcome Consumer!</h2><br>
+        <% boolean ret_val = false;
+           try {
+            ret_val = (boolean)request.getAttribute("ret_reg_val");
+           if (ret_val) { %>
+        Registration Success
+        <% } else { %>
+        Username Exists
+       <% }
+        } catch (Exception e) {} 
+        try {
+            ret_val = (boolean)request.getAttribute("ret_login_val");
+            if (ret_val == false) { %>
+                Authentication Error
+         <% }
+        } catch (Exception e) {} 
+       %>        
         <div id="userlogin">
             <div class="userinfo">
-                <p class="info"><b>Register as a New User</b></p>
+                <p class="info"><b>Register as a New Consumer</b></p>
+                <form method="post" name="register" action="/FWRP/JSP/consumerregister">
                 <label for="firstname">First Name</label><br>
                 <input type="text" name="firstname"><br>  
                 <label for="lastname">Last Name</label><br>
@@ -38,12 +55,12 @@
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
                 <input type="text"  name="password"><br>
-                <a href="./consumerpage.html">
-                    <input class="submit" type="submit" value="Register">  
-                </a> 
-            </div>
+                <input class="submitregistration" type="submit" value="Register">
+                </form>
+            </div>            
             <div class="userinfo">
-                <p class="info"><b>Login as a Returning User</b></p>
+                <p class="info"><b>Login as a Returning Consumer</b></p>
+                <form method="post" name="register" action="/FWRP/JSP/consumerlogin">
                 <label for="username">Username</label><br>
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
@@ -51,8 +68,10 @@
                 <a href="./consumerpage.html">
                     <input class="submit" type="submit" value="Login">  
                 </a>
+                </form>
             </div>
         </div>
+        
         <footer>
             <p>&copy; Final Project, 2024</p>
         </footer>

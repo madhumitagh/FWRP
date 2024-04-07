@@ -27,9 +27,26 @@
         </ul>    
         </nav>
         <h2>Welcome Charitable Organization!</h2><br>
+         <% boolean cha_val = false;
+           try {
+            cha_val = (boolean)request.getAttribute("cha_reg_val");
+           if (cha_val) { %>
+            Registration Success
+        <% } else { %>
+        Username Exists
+       <% }
+        } catch (Exception e) {} 
+        try {
+            cha_val = (boolean)request.getAttribute("cha_login_val");
+            if (cha_val == false) { %>
+                Authentication Error
+         <% }
+        } catch (Exception e) {} 
+       %> 
         <div id="userlogin">
             <div class="userinfo">
                 <p class="info"><b>Register as a New User</b></p>
+                <form method="post" name="register" action="/FWRP/JSP/charityegister">
                 <label for="charityname">Name of Charitable Organization</label><br>
                 <input type="text" name="firstname"><br>  
                 <label for="username">Username</label><br>
@@ -38,7 +55,9 @@
                 <input type="text"  name="password"><br>
                 <a href="./charitypage.html">
                     <input class="submit" type="submit" value="Register">  
-                </a>            </div>
+                </a>
+                </form>
+            </div>
             <div class="userinfo">
                 <p class="info"><b>Login as a Returning User</b></p>
                 <label for="username">Username</label><br>
