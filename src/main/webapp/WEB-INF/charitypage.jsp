@@ -33,8 +33,7 @@
         <form method="post" action="/FWRP/JSP/charityclaim">
             
         <div class=buttons2>
-            <button class="item">View Item</button>
-            <button class="item">Claim Item</button>
+            <input name="claim" value="claim" type="submit">
         </div>
             </form>
         <table>

@@ -56,9 +56,9 @@ public class CharityDaoImpl implements EntityDao {
     public boolean enList(Entity entity) {
         Integer id;
         Connection conn = DBConnection.getConnection();
-        String query = String.format("INSERT into charity (username,password," +
-                                     "name,subscribe) " +
-                                     "VALUES (\"%s\",\"%s\",\"%s\",,\"%s\")",
+        String query = String.format("INSERT into charity (Username,Password," +
+                                     "Name,Subscribe) " +
+                                     "VALUES (\"%s\",\"%s\",\"%s\",%s)",
                                      entity.getUsername(), entity.getPassword(),
                                      entity.getName(),entity.isSubscribe());
         try {
@@ -121,7 +121,7 @@ public class CharityDaoImpl implements EntityDao {
         Connection conn = DBConnection.getConnection();
         /* check username */
         String query = String.format("SELECT * from charity where " +
-                                     "username=\"s\"", username);
+                                     "username=\"%s\"", username);
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
