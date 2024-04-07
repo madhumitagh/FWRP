@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.fwrp.model;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -17,6 +18,8 @@ public class Stock {
     private Integer quantity;
     private boolean surplus;
     
+    private Stock() {};
+    
     public Stock(int itemId, int retailerId, Date expiryDate, double discountedPrice, Integer quantity, boolean surplus) {
         this.itemId = itemId;
         this.retailerId = retailerId;
@@ -24,6 +27,12 @@ public class Stock {
         this.discountedPrice = discountedPrice;
         this.quantity = quantity;
         this.surplus = surplus;
+    }
+
+    public Stock(int itemId, int retailerId, Date expiryDate) {
+        this.itemId = itemId;
+        this.retailerId = retailerId;
+        this.expiryDate = expiryDate;
     }
 
     public boolean IsSurplus() {
@@ -53,6 +62,17 @@ public class Stock {
     public Date getExpiryDate() {
         return expiryDate;
     }
+    
+    public String getExpiryDateStr() {
+        SimpleDateFormat fmt = new SimpleDateFormat("MMM dd, yyyy");
+        return fmt.format(expiryDate);
+    }
+
+    public String getExpiryDateWidgetFmt() {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        return fmt.format(expiryDate);
+    }
+
 
     public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;

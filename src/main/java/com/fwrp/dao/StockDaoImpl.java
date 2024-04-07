@@ -31,20 +31,17 @@ public class StockDaoImpl implements StockDao {
         }
         return stockDao;
     }
-    
-    public boolean check(Stock stock) {
-        return true;
-    }
+
     
     @Override
     public boolean insert(Stock stock) {
         Connection conn = DBConnection.getConnection();
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-        String query = String.format("INSERT into stock (Item_id,Retailer_id," +
-                                     " Expiration_Date, Discounted_Price, Quantity,Surplus) " +
-                                     "VALUES (\"%d\",\"%d\",\"%s\",\"%f\",\"%s\")",
+        String query = String.format("INSERT into stock (Item_ID,Retailer_ID,Quantity," +
+                                     " Expiration_Date, Discounted_Price,Surplus) " +
+                                     "VALUES (%d,%d,%d,\"%s\",%f,%s)",
                                      stock.getItemId(),
-                                     stock.getRetailerId(),
+                                     stock.getRetailerId(), stock.getQuantity(),
                                      fmt.format(stock.getExpiryDate()),
                                      stock.getDiscountedPrice(),
                                      stock.IsSurplus());
@@ -60,31 +57,55 @@ public class StockDaoImpl implements StockDao {
     }
 
     @Override
-    public boolean delete(Integer itemId, Integer retailerId) {
-        Connection conn = DBConnection.getConnection();
-        String query = String.format("DELETE from stock where Item_Id=%d and " +
-                                     " Retailer_Id = %d",itemId,retailerId);
-        try {
-            PreparedStatement ps = conn.prepareStatement(query, Statement.SUCCESS_NO_INFO);		
-	    ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("DB delete Failed for " + query +
-                               " Message: " + e.getMessage());
-            return false;
-	}
-	return true;
+    public boolean delete(Stock stock) {
+        if (this.get(stock) != null) {
+            Connection conn = DBConnection.getConnection();
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+            String query = String.format("DELETE from stock where Item_ID=%d and " +
+                                     "Retailer_ID = %d and Expiration_Date=\"%s\"",
+                                     stock.getItemId(), stock.getRetailerId(),
+                                     fmt.format(stock.getExpiryDate()));
+            try {
+                PreparedStatement ps = conn.prepareStatement(query, Statement.SUCCESS_NO_INFO);		
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("DB delete Failed for " + query +
+                                   " Message: " + e.getMessage());
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean update(Stock stock) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conn = DBConnection.getConnection();
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        String query = String.format("UPDATE stock SET " +
+                                     "Quantity=%d,Discounted_Price=%f,Surplus=%s " +
+                                     "where Item_ID=%d and Retailer_ID =%d " +
+                                     "and Expiration_Date = \"%s\"",
+                                     stock.getQuantity(), stock.getDiscountedPrice(),
+                                     stock.IsSurplus(), stock.getItemId(),
+                                     stock.getRetailerId(),
+                                     fmt.format(stock.getExpiryDate()));
+        try {
+            PreparedStatement ps = conn.prepareStatement(query, Statement.SUCCESS_NO_INFO);		
+	    ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("DB update Failed for " + query +
+                               " Message: " + e.getMessage());
+            return false;
+	}
+	return true;  
     }
 
     @Override
     public boolean markSurplus(Stock stock, boolean surplus) {
         Connection conn = DBConnection.getConnection();
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-        String query = String.format("UPDATE from stock SET Surplus=\"%s\" " +
+        String query = String.format("UPDATE from stock SET Surplus=%s " +
                                      "where Item_Id=%d and Retailer_Id = %d " +
                                      "and Expiration_Date = \"%s\"",
                                      surplus, stock.getItemId(),
@@ -103,11 +124,36 @@ public class StockDaoImpl implements StockDao {
 	return true;        
     }
     
+    @Override    
+    public Stock get(Stock stock) {
+        Connection conn = DBConnection.getConnection();
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        String query = String.format("SELECT * from stock where Item_ID=%d and " +
+                                     "Retailer_ID = %d and Expiration_Date=\"%s\"",
+                                     stock.getItemId(), stock.getRetailerId(),
+                                     fmt.format(stock.getExpiryDate()));
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);		
+	    ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                stock.setQuantity(Integer.valueOf(rs.getString("Quantity")));
+                stock.setDiscountedPrice(Double.parseDouble(rs.getString("Discounted_Price")));
+                stock.setSurplus(rs.getBoolean("Surplus"));
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("DB delete Failed for " + query +
+                               " Message: " + e.getMessage());
+	}
+	return stock;
+    }
+    
     @Override
     public ArrayList<Stock> getAll(Integer retailerId) {
         ArrayList stocks = new ArrayList<Stock>();
         Connection conn = DBConnection.getConnection();
-        String query = String.format("SELECT * from stock where retailer_id = %d ",
+        String query = String.format("SELECT * from stock where Retailer_ID = %d ",
                                      retailerId);
                                      
         try {
@@ -122,7 +168,7 @@ public class StockDaoImpl implements StockDao {
                             fmt.parse(rs.getString("Expiration_Date")),
                             Double.parseDouble(rs.getString("Discounted_Price")),
                             Integer.valueOf(rs.getString("Quantity")),
-                            Boolean.parseBoolean(rs.getString("Surplus"))));
+                            rs.getBoolean("Surplus")));
                 } catch (ParseException ex) {
                     Logger.getLogger(StockDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -153,7 +199,7 @@ public class StockDaoImpl implements StockDao {
                             fmt.parse(rs.getString("Expiration_Date")),
                             Double.parseDouble(rs.getString("Discounted_Price")),
                             Integer.valueOf(rs.getString("Quantity")),
-                            Boolean.parseBoolean(rs.getString("Surplus"))));
+                            rs.getBoolean("Surplus")));
                 } catch (ParseException ex) {
                     Logger.getLogger(StockDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
