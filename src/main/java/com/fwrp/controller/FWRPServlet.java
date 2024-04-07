@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fwrp.model.factory.*;
 import com.fwrp.model.*;
 import com.fwrp.dao.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -85,14 +87,37 @@ public class FWRPServlet extends HttpServlet {
             }
         } else if (uri.equals("/FWRP/JSP/retailerinsert")) {
             if (request.getSession().getAttribute("retail") != null) {
-                Entity ent = (Entity)request.getSession().getAttribute("retail");
-                //Test Data
-                Stock stock = new Stock(1, ent.getId(), new Date(), 50.88, 50, true);
-                StockDaoImpl.getInstance().insert(stock);
-                ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
-                request.setAttribute("item_list", itemsList);
-                request.getRequestDispatcher("/WEB-INF/retailerpage.jsp").forward(request, response);
-            } else {
+                if (messageType.equals("GET")) {
+                    request.getRequestDispatcher("/WEB-INF/retailerinsert.jsp").forward(request, response);
+                } else {
+                    SimpleDateFormat fmt = new SimpleDateFormat("mm-dd-yy");
+                    Entity ent = (Entity)request.getSession().getAttribute("retail");
+                    String itemType = request.getParameter("item_type");
+                    String itemName = request.getParameter("item_name");
+                    try {
+                        Date expDate = fmt.parse(request.getParameter("exp_date"));
+                        Double price = Double.valueOf(request.getParameter("price"));
+                        int quantity = Integer.parseInt(request.getParameter("quantity"));
+                        boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
+                                            Item item = ItemDaoImpl.getInstance().check(itemType, itemName);
+                        if (item == null) {
+                            item = ItemFactory.create(itemType, itemName);
+                            ItemDaoImpl.getInstance().insert(item);
+                        }
+                        //Test Data
+                        Stock stock = new Stock(item.getId(), ent.getId(), expDate, price, quantity, surplus);
+                        StockDaoImpl.getInstance().insert(stock);
+                        ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
+                        request.setAttribute("item_list", itemsList);
+                        response.sendRedirect("/FWRP/JSP/retailerpage");
+                    } catch (ParseException e) {
+                        System.out.println(e.getMessage());
+                        response.sendRedirect("/FWRP/JSP/retailerpage");
+                    }
+
+                    //request.getRequestDispatcher("/WEB-INF/retailerpage.jsp").forward(request, response);
+                }
+            } else { 
                 request.setAttribute("ret_login_val", false);
                 request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
             }
