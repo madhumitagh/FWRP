@@ -27,36 +27,20 @@
         </ul>    
     </nav>
     <main>
+        <main>
         <h2>Purchase/Claim Entry Form</h2>
         <form id="PurchaseForm">
-            <label for="userType">User Type:</label>
-            <select id="userType" name="userType" required>
-                <option value="consumer">Consumer</option>
-                <option value="charity">Charitable Organization</option>
+            <label for="itemType">Item Type:</label>
+            <select id="itemType" name="itemType" required>
+                <option value="food">Food</option>
+                <option value="beverage">Beverage</option>
             </select><br><br>
             
-            <label for="itemId">Item ID:</label>
-            <input type="number" id="itemId" name="itemId" required><br><br>
-            
-            <label for="retailerId">Retailer ID:</label>
-            <input type="number" id="retailerId" name="retailerId" required><br><br>
-            
-            <label for="expirationDate">Expiration Date:</label>
-            <input type="date" id="expirationDate" name="expirationDate" required><br><br>
-            
-            <label for="userId">User ID:</label>
-            <input type="number" id="userId" name="userId" required><br><br>
+            <label for="itemName">Item Name:</label>
+            <input type="text" id="itemName" name="itemName" required><br><br>
             
             <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" required><br><br>
-            
-            <label for="dateProcessed">Date Processed:</label>
-            <input type="date" id="dateProcessed" name="dateProcessed" required><br><br>
-            
-            <div id="priceContainer">
-                <label for="pricePurchased">Price Purchased:</label>
-                <input type="text" id="pricePurchased" name="pricePurchased"><br><br>
-            </div>
+            <input type="number" id="quantity" name="quantity" min="" max="" required><br><b
             
             <input type="submit" value="Submit">
         </form>
@@ -64,19 +48,5 @@
     <footer>
         <p>&copy; Final Project, 2024</p>
     </footer>
-    
-    <script>
-
-        // This JS script is to show or hide the price field
-        document.getElementById('userType').addEventListener('change', function() {
-            var userType = this.value;
-            var priceContainer = document.getElementById('priceContainer');
-            if(userType "==" 'charity') {
-                priceContainer.style.display = 'none';
-            } else {
-                priceContainer.style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>
