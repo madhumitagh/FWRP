@@ -32,7 +32,7 @@ public class ItemDaoImpl implements ItemDao {
     public boolean insert(Item item) {
         Integer item_id;
         Connection conn = DBConnection.getConnection();
-        String query = String.format("INSERT into item (item_type,name) " +
+        String query = String.format("INSERT into items (Item_Type,Name) " +
                                      "VALUES (\"%s\",\"%s\")",
                                      item.getItemtype(), item.getName());
         try {
@@ -54,7 +54,7 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     public boolean check(Integer id) {
         Connection conn = DBConnection.getConnection();
-        String query = String.format("SELECT * from item where item_id=%d", id);
+        String query = String.format("SELECT * from items where Item_ID=%d", id);
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
@@ -70,7 +70,7 @@ public class ItemDaoImpl implements ItemDao {
     public Item check(String itemType, String itemName) {
         Connection conn = DBConnection.getConnection();
         Item item = null;
-        String query = String.format("SELECT * from item where Item_Type=\"%s\" and Item_Name=\"%s\"",
+        String query = String.format("SELECT * from items where Item_Type=\"%s\" and Name=\"%s\"",
                                      itemType,itemName);
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
@@ -89,7 +89,7 @@ public class ItemDaoImpl implements ItemDao {
     public boolean delete(Integer id) {
         if (this.check(id)) {
             Connection conn = DBConnection.getConnection();
-            String query = String.format("DELETE from item where item_id=%d", id);
+            String query = String.format("DELETE from items where Item_ID=%d", id);
             try {
                 PreparedStatement ps = conn.prepareStatement(query,
                                                     Statement.SUCCESS_NO_INFO);		
@@ -102,19 +102,39 @@ public class ItemDaoImpl implements ItemDao {
         }
         return true;
     }
+
+    @Override
+    public Item get(Integer itemId) {
+        Item item = null;
+        Connection conn = DBConnection.getConnection();
+        String query = String.format("SELECT * from items where Item_ID=%d", itemId);
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);		
+	    ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                item = ItemFactory.createWithId(rs.getString("Item_Type"),
+                                                   rs.getString("Name"),
+                                                   itemId);
+            }
+        } catch (SQLException e) {
+            System.out.println("DB delete Failed for " + query +
+                               " Message: " + e.getMessage());
+	}
+	return item;
+    }
     
     @Override
     public ArrayList<Item> getAll() {
         ArrayList items = new ArrayList<Item>();
         Connection conn = DBConnection.getConnection();
-        String query = String.format("SELECT * from item");
+        String query = String.format("SELECT * from items");
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 items.add(ItemFactory.createWithId(rs.getString("Item_Type"),
                                                    rs.getString("Name"),
-                                                   rs.getInt("ItemID")));
+                                                   rs.getInt("Item_ID")));
             }
             return items;
         } catch (SQLException e) {

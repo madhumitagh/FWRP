@@ -11,9 +11,10 @@ import java.util.ArrayList;
  */
 public interface StockDao {
     public boolean insert(Stock stock);
-    public boolean delete(Integer itemId, Integer retailerId);
+    public boolean delete(Stock stock);
     public boolean update(Stock stock);
     public boolean markSurplus(Stock stock, boolean surplus);
+    public Stock get(Stock stock);
     public ArrayList<Stock> getAll(Integer retailerId);
     public ArrayList<Stock> getAll();
 }

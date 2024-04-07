@@ -33,10 +33,12 @@
         <h2>Welcome Retailer <%=en.getName()%>! ID:<%=en.getId()%></h2><br>
         <form action="/FWRP/JSP/retailerinsert">
         <div class=buttons>
-            <button name="insert" type="submit">Insert Item</button>
+            <button name="insert" type="submit"class=item>Insert Item</button>
         </div>
         </form>
-        <table>
+        
+        <form action="/FWRP/JSP/retailerupd">
+        <table border="1">
   <tr>
     <th>Item Id</th>
     <th>Expiration</th>
@@ -49,19 +51,20 @@
      for (Stock st: list) { %>
   <tr>
     <td><%=st.getItemId()%></td>
-    <td><%=st.getExpiryDate()%></td>
+    <td><%=st.getExpiryDateStr()%></td>
     <td><%=st.getQuantity()%></td>
     <td><%=st.getDiscountedPrice()%></td>
     <td><%=st.IsSurplus()%></td>
     <td>
           <div class=buttons>
-            <button class="item">Update Item</button>
-            <button class="item">Delete Item</button>
+            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getExpiryDateStr()%>" type="submit">Update Item</button>
+            <button class=item name="stockdel" value="<%=st.getItemId() + "_" + st.getExpiryDateStr()%>" type="submit">Delete Item</button>
         </div>
     </td>
   </tr>
   <% } %>
 </table>
+  </form>
         <footer>
             <p>&copy; Final Project, 2024</p>
         </footer>
