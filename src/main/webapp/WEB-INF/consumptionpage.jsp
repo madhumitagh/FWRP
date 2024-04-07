@@ -27,13 +27,6 @@
                 <li class="navitem"><a class="active">Consumption</a></li>
             </ul>    
         </nav>
-       
-        <h2>Welcome to the Food Waste Reduction Platform!</h2><br>
-            <p class="info">Please select your user type to continue:</p>
-            <a href="./JSP/retailerlogin" class="buttongroup">Retailer</a><br>
-            <a href="./JSP/consumerlogin" class="buttongroup">Consumer</a><br>
-            <a href="./JSP/charitylogin" class="buttongroup">Charitable Organization</a><br>
-            <a href="./JSP/consumptionpage" class="buttongroup">Consumption</a><br>
             
         <main>
             <h2>Consumed Items Entry</h2>
