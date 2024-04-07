@@ -335,6 +335,7 @@ public class FWRPServlet extends HttpServlet {
             } else if (request.getSession().getAttribute("individual") != null) {
                 // Consumer/Individual
             }
+            request.getRequestDispatcher("/WEB-INF/purchasepage.jsp").forward(request, response);
         }   
     }
 
