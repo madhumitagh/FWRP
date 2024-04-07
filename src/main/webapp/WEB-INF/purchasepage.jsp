@@ -1,0 +1,83 @@
+<%-- 
+    Document   : purchasepage
+    Created on : Apr. 6, 2024, 10:54:31 p.m.
+    Author     : Madhumita, Piyalee, Pooja, Shilpi
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Unified Purchase and Claim Entry">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Food Waste Reduction Platform - Unified Purchase/Claim Entry</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <h1 id="title">Food Waste Reduction Platform</h1>
+    </header>
+    <nav>
+        <ul id="navbar">
+            <li class="navitem"><a href="./index.html">Home</a></li>
+            <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
+            <li class="navitem"><a href="./consumerlogin.html">Consumer</a></li>
+            <li class="navitem"><a href="./charitylogin.html">Charitable Organization</a></li>
+            <li class="navitem"><a class="active" href="./purchasepage.html">Purchase/Claim</a></li>
+        </ul>    
+    </nav>
+    <main>
+        <h2>Purchase/Claim Entry Form</h2>
+        <form id="PurchaseForm">
+            <label for="userType">User Type:</label>
+            <select id="userType" name="userType" required>
+                <option value="consumer">Consumer</option>
+                <option value="charity">Charitable Organization</option>
+            </select><br><br>
+            
+            <label for="itemId">Item ID:</label>
+            <input type="number" id="itemId" name="itemId" required><br><br>
+            
+            <label for="retailerId">Retailer ID:</label>
+            <input type="number" id="retailerId" name="retailerId" required><br><br>
+            
+            <label for="expirationDate">Expiration Date:</label>
+            <input type="date" id="expirationDate" name="expirationDate" required><br><br>
+            
+            <label for="userId">User ID:</label>
+            <input type="number" id="userId" name="userId" required><br><br>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required><br><br>
+            
+            <label for="dateProcessed">Date Processed:</label>
+            <input type="date" id="dateProcessed" name="dateProcessed" required><br><br>
+            
+            <div id="priceContainer">
+                <label for="pricePurchased">Price Purchased:</label>
+                <input type="text" id="pricePurchased" name="pricePurchased"><br><br>
+            </div>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+    <footer>
+        <p>&copy; Final Project, 2024</p>
+    </footer>
+    
+    <script>
+
+        // This JS script is to show or hide the price field
+        document.getElementById('userType').addEventListener('change', function() {
+            var userType = this.value;
+            var priceContainer = document.getElementById('priceContainer');
+            if(userType "==" 'charity') {
+                priceContainer.style.display = 'none';
+            } else {
+                priceContainer.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
