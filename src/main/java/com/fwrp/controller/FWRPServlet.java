@@ -179,7 +179,7 @@ public class FWRPServlet extends HttpServlet {
                 //Register
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                String name = request.getParameter("name");
+                String name = request.getParameter("firstname")+ "" + request.getParameter("lastname");
                 Entity individual = IndividualFactory.getInstance().getConsumer(username, password, name);
                 
                 if (!IndividualDaoImpl.getInstance().check(username)) {
