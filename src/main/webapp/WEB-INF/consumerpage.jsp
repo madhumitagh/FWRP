@@ -23,9 +23,10 @@
         <nav>
             <ul id="navbar">
             <li class="navitem"><a href="./index.html" >Home</a></li>
-            <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
+            <li class="navitem"><a href="./JSP/retailerlogin">Retailer</a></li>
             <li class="navitem"><a class="active">Consumer</a></li>
-            <li class="navitem"><a href="./charitylogin.html">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/charitylogin">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
             </ul>    
         </nav>
         

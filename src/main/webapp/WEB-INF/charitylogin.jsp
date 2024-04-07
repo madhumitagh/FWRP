@@ -21,11 +21,13 @@
         <nav>
         <ul id="navbar">
             <li class="navitem"><a href="./index.html" >Home</a></li>
-            <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
-            <li class="navitem"><a href="./consumerlogin.html">Consumer</a></li>
-            <li class="navitem"><a class="active" href="./charitylogin.html">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/retailerlogin">Retailer</a></li>
+            <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
+            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
+            <li class="navitem"><a class="active" href="./JSP/charitylogin">Charitable Organization</a></li>
         </ul>    
         </nav>
+     
         <h2>Welcome Charitable Organization!</h2><br>
          <% boolean cha_val = false;
            try {
