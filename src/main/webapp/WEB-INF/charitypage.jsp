@@ -32,11 +32,8 @@
         
          <% Entity en = (Entity)session.getAttribute("charity");%>    
         <h2>Welcome Charitable Organization!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
-        <form method="post" action="/FWRP/JSP/charityclaim">
-            
-        <div class=buttons2>
-            <input name="claim" value="claim" type="submit">
-        </div>
+        <form method="post" action="/FWRP/JSP/purchasepage">
+           
             </form>
         <table>
   <tr>
@@ -44,7 +41,7 @@
     <th>Expiration</th>
     <th>Quantity</th>
     <th>Price</th>
-    <th>Surplus</th>
+    <th>Purchase</th>
    
   </tr>
   <% ArrayList<Stock> list = (ArrayList)request.getAttribute("item_list"); 
@@ -54,8 +51,12 @@
     <td><%=st.getExpiryDate()%></td>
     <td><%=st.getQuantity()%></td>
     <td><%=st.getDiscountedPrice()%></td>
-    <td><%=st.IsSurplus()%></td>
-          
+    <td>
+   <div class=buttons>
+            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getRetailerId()+ " " + st.getExpiryDateStr()%>" type="submit">Update Item</button>
+            
+        </div>
+    </td>   
   </tr>
   <% } %>
 </table>
