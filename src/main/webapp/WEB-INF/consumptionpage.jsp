@@ -48,8 +48,8 @@
                         <td><input type="date" name="expirationDate" required></td>
                         <td>
                             <select name="consumerType" required>
-                                <option value="type1">Type 1</option>
-                                <option value="type2">Type 2</option>
+                                <option value="type1">Individual</option>
+                                <option value="type2">Charity</option>
                             
 
                             </select>
