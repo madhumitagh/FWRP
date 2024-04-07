@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author mrinm
+ * @author madhumita
  */
 public class StockDaoImpl implements StockDao {
     private static StockDaoImpl stockDao = null;
