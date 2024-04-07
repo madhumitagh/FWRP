@@ -35,13 +35,13 @@
         <form method="post" action="/FWRP/JSP/purchasepage">
            
             </form>
-        <table>
+        <table border="1">
   <tr>
     <th>Item Id</th>
     <th>Expiration</th>
     <th>Quantity</th>
     <th>Price</th>
-    <th>Purchase</th>
+   
    
   </tr>
   <% ArrayList<Stock> list = (ArrayList)request.getAttribute("item_list"); 
@@ -53,7 +53,7 @@
     <td><%=st.getDiscountedPrice()%></td>
     <td>
    <div class=buttons>
-            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getRetailerId()+ " " + st.getExpiryDateStr()%>" type="submit">Update Item</button>
+            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getRetailerId()+ " " + st.getExpiryDateStr()%>" type="submit">Claim</button>
             
         </div>
     </td>   
