@@ -7,7 +7,7 @@ import com.fwrp.model.Stock;
 import java.util.ArrayList;
 /**
  *
- * @author mrinm
+ * @author madhumita,piyalee,pooja,shilpi
  */
 public interface StockDao {
     public boolean insert(Stock stock);
@@ -15,4 +15,5 @@ public interface StockDao {
     public boolean update(Stock stock);
     public boolean markSurplus(Stock stock, boolean surplus);
     public ArrayList<Stock> getAll(Integer retailerId);
+    public ArrayList<Stock> getAll();
 }

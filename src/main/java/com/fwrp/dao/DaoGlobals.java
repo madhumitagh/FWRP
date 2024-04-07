@@ -7,7 +7,7 @@ import com.fwrp.database.DBConnection;
 
 /**
  *
- * @author mrinm
+ * @author madumita,piyalee, pooja, shilpi
  */
 public class DaoGlobals {
     public static void setServDir(String srvDir) {

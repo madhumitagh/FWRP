@@ -20,7 +20,7 @@ import java.util.Date;
 
 /**
  *
- * @author mrinm
+ * @author Madhumita, Piyalee, Pooja, Shilpi
  */
 public class FWRPServlet extends HttpServlet {
     private static String servDir = null;
@@ -60,6 +60,7 @@ public class FWRPServlet extends HttpServlet {
                     request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
                 }
             }
+            
         } else if (uri.equals("/FWRP/JSP/retailerregister")) {
                 //Register
                 String username = request.getParameter("username");
@@ -75,6 +76,7 @@ public class FWRPServlet extends HttpServlet {
                     request.setAttribute("ret_reg_val", false);
                     request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
                 }
+                
         } else if (uri.equals("/FWRP/JSP/retailerpage")) {
             if (request.getSession().getAttribute("retail") != null) {
                 Entity ent = (Entity)request.getSession().getAttribute("retail");
@@ -85,6 +87,7 @@ public class FWRPServlet extends HttpServlet {
                 request.setAttribute("ret_login_val", false);
                 request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
             }
+            
         } else if (uri.equals("/FWRP/JSP/retailerinsert")) {
             if (request.getSession().getAttribute("retail") != null) {
                 if (messageType.equals("GET")) {
@@ -122,10 +125,10 @@ public class FWRPServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
             }
             
+            
         // Charity Invocations
         } else if (uri.equals("/FWRP/JSP/charitylogin")) {
-           // request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
-                        if (messageType.equals("GET")) {
+            if (messageType.equals("GET")) {
                 request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
             } else {
                 String username = request.getParameter("usernamelogin");
@@ -141,6 +144,7 @@ public class FWRPServlet extends HttpServlet {
                     request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
                 }
             }
+                        
         } else if (uri.equals("/FWRP/JSP/charityregister")) {
                 //Register
                 String username = request.getParameter("username");
@@ -166,6 +170,7 @@ public class FWRPServlet extends HttpServlet {
                 request.setAttribute("cha_login_val", false);
                 request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
             }
+            
         } else if (uri.equals("/FWRP/JSP/charityinsert")) {
             if (request.getSession().getAttribute("charity") != null) {
                 Entity ent = (Entity)request.getSession().getAttribute("charity");
@@ -176,18 +181,83 @@ public class FWRPServlet extends HttpServlet {
                 request.setAttribute("item_list", itemsList);
                 request.getRequestDispatcher("/WEB-INF/charitypage.jsp").forward(request, response);
             } else {
-                request.setAttribute("ret_login_val", false);
+                request.setAttribute("cha_login_val", false);
                 request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
             }
-
             
-        } 
+            
+            
+         // Individual Invocations
+        } else if (uri.equals("/FWRP/JSP/consumerlogin")) {       
         
-        
-        else if (uri.equals("/FWRP/JSP/consumerlogin")) {
-        // Individual Invocations
+            if (messageType.equals("GET")) {
+                request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
+            } else {
+                String username = request.getParameter("usernamelogin");
+                String password = request.getParameter("passwordlogin");
+                Entity individual = IndividualFactory.getInstance().getConsumer(username, password, "dummy");
+                if (IndividualDaoImpl.getInstance().authenticate(individual) != null) {
+                    request.setAttribute("ret_login_val", true);
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("individual", individual);
+                    response.sendRedirect("/FWRP/JSP/consumerpage");
+                } else {
+                    request.setAttribute("ret_login_val", false);
+                    request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
+                }
+            }
+            
+        } else if (uri.equals("/FWRP/JSP/consumerregister")) {
+                //Register
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                String name = request.getParameter("firstname") + " " + request.getParameter("lastname");
+                Entity individual = IndividualFactory.getInstance().getConsumer(username, password, name);
+                
+                if (!IndividualDaoImpl.getInstance().check(username)) {
+                    IndividualDaoImpl.getInstance().enList(individual);
+                    request.setAttribute("ret_reg_val", true);
+                    request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);                    
+                }  else {
+                    request.setAttribute("ret_reg_val", false);
+                    request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
+                }
+                
+        } else if (uri.equals("/FWRP/JSP/consumerpage")) {
+            if (request.getSession().getAttribute("individual") != null) {
+                //Entity ent = (Entity)request.getSession().getAttribute("individual");
+                ArrayList itemsList = StockDaoImpl.getInstance().getAll();
+                request.setAttribute("item_list", itemsList);
+                request.getRequestDispatcher("/WEB-INF/consumerpage.jsp").forward(request, response);
+            } else {
+                request.setAttribute("ret_login_val", false);
+                request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
+            }
+            
+        } else if (uri.equals("/FWRP/JSP/consumerpurchase")) {
+            if (request.getSession().getAttribute("individual") != null) {
+                Entity ent = (Entity)request.getSession().getAttribute("individual");
+                //Test Data
+                Stock stock = new Stock(1, ent.getId(), new Date(), 50.88, 50, true);
+                StockDaoImpl.getInstance().insert(stock);
+                ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
+                request.setAttribute("item_list", itemsList);
+                request.getRequestDispatcher("/WEB-INF/consumerpage.jsp").forward(request, response);
+            } else {
+                request.setAttribute("ret_login_val", false);
+                request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
+            }
             request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
+
+        } else if (uri.equals("/FWRP/JSP/consumption")) {
+            request.getRequestDispatcher("/WEB-INF/consumptionpage.jsp").forward(request, response);
+            
+        } else if (uri.equals("/FWRP/JSP/purchase/claim")) {
+            request.getRequestDispatcher("/WEB-INF/purchasepage.jsp").forward(request, response);
+            
+            
         }
+        
     }
 
 

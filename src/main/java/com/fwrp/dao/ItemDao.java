@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author mrinm
+ * @author madhumita, piyalee,pooja,shilpi
  */
 public interface ItemDao {
     public boolean insert(Item item);

@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author mrinm
+ * @author madhumita, piyalee, pooja, shilpi
  */
 public class IndividualDaoImpl implements EntityDao {
 
@@ -55,9 +55,9 @@ public class IndividualDaoImpl implements EntityDao {
     public boolean enList(Entity entity) {
         Integer id;
         Connection conn = DBConnection.getConnection();
-        String query = String.format("INSERT into individual (username,password," +
-                                     "name,subscribe) " +
-                                     "VALUES (\"%s\",\"%s\",\"%s\",,\"%s\")",
+        String query = String.format("INSERT into individual (Username,Password," +
+                                     "Name,Subscribe) " +
+                                     "VALUES (\"%s\",\"%s\",\"%s\",%s)",
                                      entity.getUsername(), entity.getPassword(),
                                      entity.getName(),entity.isSubscribe());
         try {
@@ -99,7 +99,7 @@ public class IndividualDaoImpl implements EntityDao {
     @Override
     public boolean subscriber(Entity entity) {
         Connection conn = DBConnection.getConnection();
-        String query = String.format("UPDATE from individual SET subscriber=\"%s\" " +
+        String query = String.format("UPDATE from individual SET subscriber=%s " +
                                      "where id=%d",
                                      entity.isSubscribe(), entity.getId());                
 
@@ -120,7 +120,7 @@ public class IndividualDaoImpl implements EntityDao {
         Connection conn = DBConnection.getConnection();
         /* check username */
         String query = String.format("SELECT * from individual where " +
-                                     "username=\"s\"", username);
+                                     "username=\"%s\"", username);
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();

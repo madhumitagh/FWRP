@@ -6,7 +6,7 @@ package com.fwrp.dao;
 import com.fwrp.model.Entity;
 /**
  *
- * @author mrinm
+ * @author madhumita, piyalee.pooja,shilpi
  */
 public interface EntityDao {
     public Entity authenticate(Entity entity);
