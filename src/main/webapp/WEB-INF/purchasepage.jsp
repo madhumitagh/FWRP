@@ -27,7 +27,7 @@
         </ul>    
     </nav>
     <main>
-        <main>
+        
         <h2>Purchase/Claim Entry Form</h2>
          
         <form method="post" name="Purchase Form" action="/FWRP/JSP/purchasepage">
@@ -41,10 +41,15 @@
             <input type="text" id="expirationDate" name="expirationDate" readonly="true"><br><br>
             
             <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1"><br><b>
+            <input type="number" id="quantity" name="quantity" min="1"><br><br>
                 
             <label for="retailer">Retailer:</label>
-            <input type="text" name="retailer"><br><b>
+            <input type="text" id="retailer" name="retailer" readonly="true"><br><br>
+                
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" readonly="true"><br><br>
+                
+            
                
             <input type="submit" value="Submit">
         </form>
