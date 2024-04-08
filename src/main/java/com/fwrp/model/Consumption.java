@@ -56,6 +56,14 @@ public class Consumption {
         }
     }
 
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
     public void setConsumerType(EntityType consumerType) {
         this.consumerType = consumerType;
     }
