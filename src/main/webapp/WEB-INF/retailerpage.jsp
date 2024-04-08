@@ -24,9 +24,9 @@
             <ul id="navbar">
               <li class="navitem"><a href="/FWRP/" >Home</a></li>
               <li class="navitem"><a class="active">Retailer</a></li>
-              <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
-              <li class="navitem"><a href="./JSP/charitylogin">Charitable Organization</a></li>
-              <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
+              <li class="navitem"><a href="/FWRP/JSP/consumerlogin">Consumer</a></li>
+              <li class="navitem"><a href="/FWRP/JSP//charitylogin">Charitable Organization</a></li>
+              <li class="navitem"><a href="/FWRP/JSP/consumptionpage">Consumption</a></li>
             </ul>    
           </nav>
         <% Entity en = (Entity)session.getAttribute("retail");%>    

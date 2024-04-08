@@ -61,7 +61,6 @@ public class FWRPServlet extends HttpServlet {
                     }
                     session = request.getSession(true);
                     session.setAttribute("retail", retail);
-                    session.invalidate();
                     response.sendRedirect("/FWRP/JSP/retailerpage");
                 } else {
                     request.setAttribute("ret_login_val", false);
