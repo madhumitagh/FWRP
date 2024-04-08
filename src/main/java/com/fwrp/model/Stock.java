@@ -18,7 +18,7 @@ public class Stock {
     private Integer quantity;
     private boolean surplus;
     
-    private Stock() {};
+    private Stock() {}
     
     public Stock(int itemId, int retailerId, Date expiryDate, double discountedPrice, Integer quantity, boolean surplus) {
         this.itemId = itemId;
