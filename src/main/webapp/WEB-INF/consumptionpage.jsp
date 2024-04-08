@@ -42,13 +42,13 @@
                     <th>Price Purchased</th>
                 </tr>
                 <tr>
-                    <td><input type="number" name="itemId" required></td>
-                    <td><input type="number" name="retailerId" required></td>
-                    <td><input type="date" name="expirationDate" required></td>
-                    <td><input type="number" name="consumerId" required></td>
-                    <td><input type="number" name="quantity" min="1" required></td>
-                    <td><input type="date" name="datePurchased" required></td>
-                    <td><input type="text" name="pricePurchased" required></td>
+                    <td><input type="number" name="itemId" readonly="true"></td>
+                    <td><input type="number" name="retailerId" readonly="true"></td>
+                    <td><input type="text" name="expirationDate" readonly="true"></td>
+                    <td><input type="number" name="consumerId" readonly="true"></td>
+                    <td><input type="number" name="quantity" min="1" readonly="true"></td>
+                    <td><input type="text" name="datePurchased" readonly="true"></td>
+                    <td><input type="text" name="pricePurchased" readonly="true"></td>
                 </tr>
             </table>
         </form>

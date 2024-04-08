@@ -64,9 +64,7 @@
                 <input type="text" name="usernamelogin"><br>  
                 <label for="password">Password</label><br>
                 <input type="text"  name="passwordlogin"><br>
-                <a href="./retailerpage.html">
-                    <input class="submitlogin" type="submit" value="Login">  
-                </a>
+                <input class="submitlogin" type="submit" value="Login">  
                 </form>
             </div>
         </div>
