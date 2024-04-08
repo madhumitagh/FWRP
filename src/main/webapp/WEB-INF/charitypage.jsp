@@ -49,7 +49,7 @@
      for (Stock st: list) { %>
   <tr>
     <td><%=st.getItemId()%></td>
-    <td><%=st.getExpiryDate()%></td>
+    <td><%=st.getExpiryDateStr()%></td>
     <td><%=st.getQuantity()%></td>
     <td><%=st.getDiscountedPrice()%></td>
     <td>
