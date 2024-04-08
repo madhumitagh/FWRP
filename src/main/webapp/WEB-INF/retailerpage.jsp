@@ -31,6 +31,7 @@
           </nav>
         <% Entity en = (Entity)session.getAttribute("retail");%>    
         <h2>Welcome Retailer <%=en.getName()%>! ID:<%=en.getId()%></h2><br>
+        <a href="/FWRP/JSP/retaillogout" class="item" style="float: right;">Logout</a>
         <form action="/FWRP/JSP/retailerinsert">
         <div class=buttons>
             <button name="insert" type="submit"class=item>Insert Item</button>
