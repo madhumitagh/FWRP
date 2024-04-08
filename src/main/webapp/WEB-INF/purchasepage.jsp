@@ -37,6 +37,9 @@
             <label for="itemName">Item Name:</label>
             <input type="text" id="itemName" name="itemName" readonly="true"><br><br>
             
+            <label for="expirationDate">Expiration Date:</label>
+            <input type="text" id="expirationDate" name="expirationDate" readonly="true"><br><br>
+            
             <label for="quantity">Quantity:</label>
             <input type="number" name="quantity" min="1"><br><b>
             
