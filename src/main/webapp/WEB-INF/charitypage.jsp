@@ -25,8 +25,8 @@
             <li class="navitem"><a href="/FWRP/" >Home</a></li>
             <li class="navitem"><a href="./JSP/retailerlogin">Retailer</a></li>
             <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
-            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
             <li class="navitem"><a class="active">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
             </ul>    
         </nav>
         

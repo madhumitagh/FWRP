@@ -405,11 +405,67 @@ public class FWRPServlet extends HttpServlet {
                  }       
             } else if (request.getSession().getAttribute("individual") != null) {
                 // Consumer/Individual
+                Stock stock;
+                Entity ent = (Entity)request.getSession().getAttribute("individual");
+                 if (messageType.equals("GET")) {
+                    String upd = request.getParameter("stockupd");
+                    if (upd != null) {
+                        try {
+                            //Update
+                            String tok[] = upd.split("_");
+                            int itemId = Integer.parseInt(tok[0]);
+                            SimpleDateFormat fmt = new SimpleDateFormat("MMM dd,yyyy");
+                            int retailerId = Integer.parseInt(tok[1]);
+                            Date dt = fmt.parse(tok[2]);
+                            stock = StockFactory.create(itemId, ent.getId(), dt);
+                            stock = StockDaoImpl.getInstance().get(stock);
+                            request.setAttribute("stock", stock);
+                            request.setAttribute("item", ItemDaoImpl.getInstance().get(stock.getItemId()));
+                            request.getRequestDispatcher("/WEB-INF/purchasepage.jsp").forward(request, response);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(FWRPServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } 
+                } else {
+                    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+                    String itemType = request.getParameter("itemType");
+                    String itemName = request.getParameter("itemName");
+                    try {
+                        Date expDate = fmt.parse(request.getParameter("exp_date"));
+                        Item item = ItemDaoImpl.getInstance().check(itemType, itemName);
+                        if (item != null) {
+                            stock = StockFactory.create(item.getId(), ent.getId(), expDate);
+                            stock.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+                            
+                            Stock presentStock = StockDaoImpl.getInstance().get(stock);
+                            if (presentStock != null) {
+                                int remainingQuantity = presentStock.getQuantity() - stock.getQuantity();
+                                    Consumption entry = new Consumption(presentStock.getItemId(), presentStock.getRetailerId(),
+                                                                        ent.getId(), ent.getType(), stock.getQuantity(),
+                                                                        new Date(), presentStock.getExpiryDate(),
+                                                                        presentStock.getDiscountedPrice());
+                                    ConsumerDaoImpl.getInstance().insert(entry);
+                                if (remainingQuantity <= 0) {
+                                    StockDaoImpl.getInstance().delete(presentStock);
+                                } else {
+                                    stock.setQuantity(remainingQuantity);
+                                    StockDaoImpl.getInstance().update(stock);
+                                }
+                            }
+                            ArrayList itemsList = StockDaoImpl.getInstance().getAll();
+                            request.setAttribute("item_list", itemsList);
+                            response.sendRedirect("/FWRP/JSP/consumerpage");
+                        }
+                    } catch (ParseException e) {
+                        System.out.println(e.getMessage());
+                        ArrayList itemsList = StockDaoImpl.getInstance().getAll();
+                        request.setAttribute("item_list", itemsList);
+                        response.sendRedirect("/FWRP/JSP/consumerpage");
+                    }
+                 }
             }
-            request.getRequestDispatcher("/WEB-INF/purchasepage.jsp").forward(request, response);
-        }   
+        }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -450,4 +506,5 @@ public class FWRPServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+   }
+    }
