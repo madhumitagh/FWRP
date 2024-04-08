@@ -31,6 +31,7 @@
         </nav>
         
          <% Entity en = (Entity)session.getAttribute("individual");%>
+         <a href="/FWRP/JSP/consumerlogout" class="item" style="float: right;">Logout</a>
         <h2>Welcome Consumer!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
         <form  action="/FWRP/JSP/purchasepage">
         

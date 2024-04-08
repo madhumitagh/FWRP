@@ -32,6 +32,7 @@
         
          <% Entity en = (Entity)session.getAttribute("charity");%>    
         <h2>Welcome Charitable Organization!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
+        <a href="/FWRP/JSP/charitylogout" class="item" style="float: right;">Logout</a>
         <form action="/FWRP/JSP/purchasepage">
            
             
@@ -54,6 +55,7 @@
     <td>
    <div class=buttons>
             <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getRetailerId()+ "_" + st.getExpiryDateStr()%>" type="submit">Claim</button>
+            
             
         </div>
     </td>   

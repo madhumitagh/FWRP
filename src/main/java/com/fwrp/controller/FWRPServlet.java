@@ -205,8 +205,10 @@ public class FWRPServlet extends HttpServlet {
                 request.setAttribute("ret_login_val", false);
                 request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
             }
-            
-            
+        } else if (uri.equals("/FWRP/JSP/retaillogout")) {
+            request.getSession(false).invalidate();
+            request.getRequestDispatcher("/WEB-INF/retailerlogin.jsp").forward(request, response);
+
         // Charity Invocations
         } else if (uri.equals("/FWRP/JSP/charitylogin")) {
             if (messageType.equals("GET")) {
@@ -268,8 +270,10 @@ public class FWRPServlet extends HttpServlet {
             } else {
                 request.setAttribute("cha_login_val", false);
                 request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
-            }
-            
+            }            
+        } else if (uri.equals("/FWRP/JSP/charitylogout")) {
+            request.getSession(false).invalidate();
+            request.getRequestDispatcher("/WEB-INF/charitylogin.jsp").forward(request, response);
             
             
          // Individual Invocations
@@ -342,6 +346,9 @@ public class FWRPServlet extends HttpServlet {
             ArrayList<Consumption> itemsList = ConsumerDaoImpl.getInstance().getAll();
             request.setAttribute("item_list", itemsList);
             request.getRequestDispatcher("/WEB-INF/consumptionpage.jsp").forward(request, response);
+        } else if (uri.equals("/FWRP/JSP/consumerlogout")) {
+            request.getSession(false).invalidate();
+            request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
             
         } else if (uri.equals("/FWRP/JSP/purchasepage")) {
             if (request.getSession().getAttribute("charity") != null) {
