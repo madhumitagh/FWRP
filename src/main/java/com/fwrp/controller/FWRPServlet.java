@@ -388,6 +388,7 @@ public class FWRPServlet extends HttpServlet {
                                if (remainingQuantity <= 0) {
                                    StockDaoImpl.getInstance().delete(presentStock);
                                } else {
+                                   stock.setDiscountedPrice(presentStock.getDiscountedPrice());
                                    stock.setQuantity(remainingQuantity);
                                    StockDaoImpl.getInstance().update(stock);
                                }
