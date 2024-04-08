@@ -45,13 +45,13 @@
              <% ArrayList<Consumption> list = (ArrayList)request.getAttribute("item_list"); 
      for (Consumption ent: list) { %>
                 <tr>
-                    <td><input type="number" name="itemId" required value="<%=ent.getItemId()%>"></td>
-                    <td><input type="number" name="retailerId" required value="<%=ent.getRetailerId()%>"></td>
-                    <td><input type="date" name="expirationDate" required value="<%=ent.getExpirationDateStr()%>"></td>
-                    <td><input type="number" name="consumerId" required value="<%=ent.getConsumerId()%>"></td>
-                    <td><input type="number" name="quantity" min="1" required value="<%=ent.getQuantity()%>"></td>
-                    <td><input type="date" name="datePurchased" required value="<%=ent.getPurchaseDateStr()%>"></td>
-                    <td><input type="text" name="pricePurchased" required value="<%=ent.getPrice()%>"></td>
+                    <td><input type="number" name="itemId" required readonly="true" value="<%=ent.getItemId()%>"></td>
+                    <td><input type="number" name="retailerId" required readonly="true" value="<%=ent.getRetailerId()%>"></td>
+                    <td><input type="text" name="expirationDate" required readonly="true" value="<%=ent.getExpirationDateStr()%>"></td>
+                    <td><input type="number" name="consumerId" required readonly="true" value="<%=ent.getConsumerId()%>"></td>
+                    <td><input type="number" name="quantity" min="1" required readonly="true" value="<%=ent.getQuantity()%>"></td>
+                    <td><input type="text" name="datePurchased" required readonly="true" value="<%=ent.getPurchaseDateStr()%>"></td>
+                    <td><input type="text" name="pricePurchased" required readonly="true" value="<%=ent.getPrice()%>"></td>
                 </tr>
     <%}%>
             </table>

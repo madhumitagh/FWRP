@@ -33,7 +33,7 @@
                 <label for="item_name">Item Name</label><br>
                 <input type="text" name="item_name"><br> 
                 <label for="exp_date">Expiration Date</label><br>
-                <input type="date"  name="exp_date"><br>
+                <input type="text"  name="exp_date"><br>
                 <label for="price">Discounted Price</label><br>
                 <input type="text"  name="price"><br>
                 <label for="quantity">Quantity</label><br>
