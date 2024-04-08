@@ -21,9 +21,9 @@
         <nav>
         <ul id="navbar">
             <li class="navitem"><a href="/FWRP/" >Home</a></li>
-            <li class="navitem"><a href="FWRP/JSP/retailerlogin.html">Retailer</a></li>
-            <li class="navitem"><a href="FWRP/JSP/consumerlogin.html">Consumer</a></li>
-            <li class="navitem"><a class="active" href="./charitylogin.html">Charitable Organization</a></li>
+            <li class="navitem"><a href="/FWRP/JSP/retailerlogin">Retailer</a></li>
+            <li class="navitem"><a href="/FWRP/JSP/consumerlogin">Consumer</a></li>
+            <li class="navitem"><a class="active" href="/FWRP/JSP/charitylogin">Charitable Organization</a></li>
         </ul>    
         </nav>
         <h2>Welcome Retailer Update Page!</h2><br>

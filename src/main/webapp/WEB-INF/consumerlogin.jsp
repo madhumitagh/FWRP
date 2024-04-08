@@ -22,7 +22,7 @@
             <ul id="navbar">
             <li class="navitem"><a href="/FWRP/" >Home</a></li>
             <li class="navitem"><a href="/FWRP/JSP/retailerlogin">Retailer</a></li>
-            <li class="navitem"><a class="active" href="./JSP/consumerlogin">Consumer</a></li>
+            <li class="navitem"><a class="active" href="/FWRP/JSP/consumerlogin">Consumer</a></li>
             <li class="navitem"><a href="/FWRP/JSP/charitylogin">Charitable Organization</a></li>
             <li class="navitem"><a href="/FWRP/JSP/consumptionpage">Consumption</a></li>
             </ul>    
