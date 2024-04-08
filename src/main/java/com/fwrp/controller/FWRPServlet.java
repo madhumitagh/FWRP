@@ -55,8 +55,13 @@ public class FWRPServlet extends HttpServlet {
                 Entity retail = RetailerFactory.create(username, password, "dummy");
                 if (RetailerDaoImpl.getInstance().authenticate(retail) != null) {
                     request.setAttribute("ret_login_val", true);
-                    HttpSession session = request.getSession(true);
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        session.invalidate();
+                    }
+                    session = request.getSession(true);
                     session.setAttribute("retail", retail);
+                    session.invalidate();
                     response.sendRedirect("/FWRP/JSP/retailerpage");
                 } else {
                     request.setAttribute("ret_login_val", false);
@@ -213,7 +218,11 @@ public class FWRPServlet extends HttpServlet {
                 Entity charity = CharityFactory.getInstance().getConsumer(username, password, "");
                 if (CharityDaoImpl.getInstance().authenticate(charity) != null) {
                     request.setAttribute("cha_login_val", true);
-                    HttpSession session = request.getSession(true);
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        session.invalidate();
+                    }
+                    session = request.getSession(true);
                     session.setAttribute("charity", charity);
                     response.sendRedirect("/FWRP/JSP/charitypage");
                 } else {
@@ -275,7 +284,11 @@ public class FWRPServlet extends HttpServlet {
                 Entity individual = IndividualFactory.getInstance().getConsumer(username, password, "dummy");
                 if (IndividualDaoImpl.getInstance().authenticate(individual) != null) {
                     request.setAttribute("ret_login_val", true);
-                    HttpSession session = request.getSession(true);
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        session.invalidate();
+                    }
+                    session = request.getSession(true);
                     session.setAttribute("individual", individual);
                     response.sendRedirect("/FWRP/JSP/consumerpage");
                 } else {

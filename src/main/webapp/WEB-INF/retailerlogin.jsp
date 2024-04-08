@@ -20,7 +20,7 @@
         </header>
         <nav>
             <ul id="navbar">
-            <li class="navitem"><a href="./JSP/retailerlogin" >Home</a></li>
+            <li class="navitem"><a href="/FWRP/" >Home</a></li>
             <li class="navitem"><a class="active" href="./JSP/retailerlogin">Retailer</a></li>
             <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
             <li class="navitem"><a href="./JSP/charitylogin">Charitable Organization</a></li>
