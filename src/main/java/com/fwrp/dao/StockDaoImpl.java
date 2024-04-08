@@ -5,6 +5,7 @@
 package com.fwrp.dao;
 
 import com.fwrp.model.Stock;
+import com.fwrp.model.factory.StockFactory;
 import com.fwrp.database.DBConnection;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -128,6 +129,7 @@ public class StockDaoImpl implements StockDao {
     public Stock get(Stock stock) {
         Connection conn = DBConnection.getConnection();
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        Stock dbStock = StockFactory.create(stock.getItemId(), stock.getRetailerId(), stock.getExpiryDate());
         String query = String.format("SELECT * from stock where Item_ID=%d and " +
                                      "Retailer_ID = %d and Expiration_Date=\"%s\"",
                                      stock.getItemId(), stock.getRetailerId(),
@@ -136,9 +138,9 @@ public class StockDaoImpl implements StockDao {
             PreparedStatement ps = conn.prepareStatement(query);		
 	    ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                stock.setQuantity(Integer.valueOf(rs.getString("Quantity")));
-                stock.setDiscountedPrice(Double.parseDouble(rs.getString("Discounted_Price")));
-                stock.setSurplus(rs.getBoolean("Surplus"));
+                dbStock.setQuantity(Integer.valueOf(rs.getString("Quantity")));
+                dbStock.setDiscountedPrice(Double.parseDouble(rs.getString("Discounted_Price")));
+                dbStock.setSurplus(rs.getBoolean("Surplus"));
             } else {
                 return null;
             }
@@ -146,7 +148,7 @@ public class StockDaoImpl implements StockDao {
             System.out.println("DB delete Failed for " + query +
                                " Message: " + e.getMessage());
 	}
-	return stock;
+	return dbStock;
     }
     
     @Override
