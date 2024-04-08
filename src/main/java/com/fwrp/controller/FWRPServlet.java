@@ -436,21 +436,22 @@ public class FWRPServlet extends HttpServlet {
                         Date expDate = fmt.parse(request.getParameter("expirationDate"));
                         Item item = ItemDaoImpl.getInstance().check(itemType, itemName);
                         if (item != null) {
-                            stock = StockFactory.create(item.getId(), ent.getId(), expDate);
+                            stock = StockFactory.create(item.getId(), retailerId, expDate);
                             stock.setQuantity(Integer.parseInt(request.getParameter("quantity")));
                             
                             Stock presentStock = StockDaoImpl.getInstance().get(stock);
                             if (presentStock != null) {
                                 int remainingQuantity = presentStock.getQuantity() - stock.getQuantity();
-                                    Consumption entry = new Consumption(presentStock.getItemId(), presentStock.getRetailerId(),
-                                                                        ent.getId(), ent.getType(), stock.getQuantity(),
-                                                                        new Date(), presentStock.getExpiryDate(),
-                                                                        presentStock.getDiscountedPrice());
-                                    ConsumerDaoImpl.getInstance().insert(entry);
+                                Consumption entry = new Consumption(presentStock.getItemId(), presentStock.getRetailerId(),
+                                                                    ent.getId(), ent.getType(), stock.getQuantity(),
+                                                                    new Date(), presentStock.getExpiryDate(),
+                                                                    presentStock.getDiscountedPrice());
+                                ConsumerDaoImpl.getInstance().insert(entry);
                                 if (remainingQuantity <= 0) {
                                     StockDaoImpl.getInstance().delete(presentStock);
                                 } else {
                                     stock.setQuantity(remainingQuantity);
+                                    stock.setDiscountedPrice(presentStock.getDiscountedPrice());
                                     StockDaoImpl.getInstance().update(stock);
                                 }
                             }

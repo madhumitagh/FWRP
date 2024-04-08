@@ -83,7 +83,7 @@ public class ConsumerDaoImpl implements ConsumerDao {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         String query = String.format("INSERT into consumption (Item_ID,Retailer_ID," +
                                      "Expiration_Date,ConsumerType,Consumer_ID," + 
-                                     "Quantity,Date_Purchased,Price_Purchased " +
+                                     "Quantity,Date_Purchased,Price_Purchased) " +
                                      "VALUES (%d,%d,\"%s\",\"%s\",%d,%d,\"%s\",%f)",
                                      entry.getItemId(), entry.getRetailerId(),
                                      fmt.format(entry.getExpirationDate()),
