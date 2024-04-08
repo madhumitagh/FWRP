@@ -373,8 +373,8 @@ public class FWRPServlet extends HttpServlet {
                     String itemName = request.getParameter("itemName");
 
                     try {
-                        int retailerId = Integer.parseInt(request.getParameter("retailer_id"));
-                        Date expDate = fmt.parse(request.getParameter("exp_date"));
+                        int retailerId = Integer.parseInt(request.getParameter("retailer"));
+                        Date expDate = fmt.parse(request.getParameter("expirationDate"));
                         Item item = ItemDaoImpl.getInstance().check(itemType, itemName);
                         if (item != null) {
                             stock = StockFactory.create(item.getId(), retailerId, expDate); 
@@ -507,4 +507,3 @@ public class FWRPServlet extends HttpServlet {
     }// </editor-fold>
 
    }
-    }
