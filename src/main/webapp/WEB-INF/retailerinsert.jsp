@@ -21,8 +21,8 @@
         <nav>
         <ul id="navbar">
             <li class="navitem"><a href="/FWRP/" >Home</a></li>
-            <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
-            <li class="navitem"><a href="./consumerlogin.html">Consumer</a></li>
+            <li class="navitem"><a href="FWRP/JSP/retailerlogin.html">Retailer</a></li>
+            <li class="navitem"><a href="FWRP/JSP/consumerlogin.html">Consumer</a></li>
             <li class="navitem"><a class="active" href="./charitylogin.html">Charitable Organization</a></li>
         </ul>    
         </nav>
@@ -37,7 +37,6 @@
                 <label for="price">Discounted Price</label><br>
                 <input type="text"  name="price"><br>
                 <label for="quantity">Quantity</label><br>
-                <input type="number"  name="quantity"><br>
                 <input type="number" name="quantity" min="1"><br><br>
                 <label for="surplus">Surplus</label><br>
                 <input type="checkbox"  name="surplus"><br>
