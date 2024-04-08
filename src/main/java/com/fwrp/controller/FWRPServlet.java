@@ -413,12 +413,13 @@ public class FWRPServlet extends HttpServlet {
                     if (upd != null) {
                         try {
                             //Update
+                            
                             String tok[] = upd.split("_");
                             int itemId = Integer.parseInt(tok[0]);
                             SimpleDateFormat fmt = new SimpleDateFormat("MMM dd,yyyy");
                             int retailerId = Integer.parseInt(tok[1]);
                             Date dt = fmt.parse(tok[2]);
-                            stock = StockFactory.create(itemId, ent.getId(), dt);
+                            stock = StockFactory.create(itemId,retailerId , dt);
                             stock = StockDaoImpl.getInstance().get(stock);
                             request.setAttribute("stock", stock);
                             request.setAttribute("item", ItemDaoImpl.getInstance().get(stock.getItemId()));
@@ -432,24 +433,26 @@ public class FWRPServlet extends HttpServlet {
                     String itemType = request.getParameter("itemType");
                     String itemName = request.getParameter("itemName");
                     try {
-                        Date expDate = fmt.parse(request.getParameter("exp_date"));
+                        int retailerId = Integer.parseInt(request.getParameter("retailer"));
+                        Date expDate = fmt.parse(request.getParameter("expirationDate"));
                         Item item = ItemDaoImpl.getInstance().check(itemType, itemName);
                         if (item != null) {
-                            stock = StockFactory.create(item.getId(), ent.getId(), expDate);
+                            stock = StockFactory.create(item.getId(), retailerId, expDate);
                             stock.setQuantity(Integer.parseInt(request.getParameter("quantity")));
                             
                             Stock presentStock = StockDaoImpl.getInstance().get(stock);
                             if (presentStock != null) {
                                 int remainingQuantity = presentStock.getQuantity() - stock.getQuantity();
-                                    Consumption entry = new Consumption(presentStock.getItemId(), presentStock.getRetailerId(),
-                                                                        ent.getId(), ent.getType(), stock.getQuantity(),
-                                                                        new Date(), presentStock.getExpiryDate(),
-                                                                        presentStock.getDiscountedPrice());
-                                    ConsumerDaoImpl.getInstance().insert(entry);
+                                Consumption entry = new Consumption(presentStock.getItemId(), presentStock.getRetailerId(),
+                                                                    ent.getId(), ent.getType(), stock.getQuantity(),
+                                                                    new Date(), presentStock.getExpiryDate(),
+                                                                    presentStock.getDiscountedPrice());
+                                ConsumerDaoImpl.getInstance().insert(entry);
                                 if (remainingQuantity <= 0) {
                                     StockDaoImpl.getInstance().delete(presentStock);
                                 } else {
                                     stock.setQuantity(remainingQuantity);
+                                    stock.setDiscountedPrice(presentStock.getDiscountedPrice());
                                     StockDaoImpl.getInstance().update(stock);
                                 }
                             }
@@ -508,3 +511,4 @@ public class FWRPServlet extends HttpServlet {
     }// </editor-fold>
 
    }
+

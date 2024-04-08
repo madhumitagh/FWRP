@@ -32,7 +32,7 @@
         
          <% Entity en = (Entity)session.getAttribute("individual");%>
         <h2>Welcome Consumer!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
-        <form method="post" action="/FWRP/JSP/purchasepage">
+        <form  action="/FWRP/JSP/purchasepage">
         
         
         <table border="1">

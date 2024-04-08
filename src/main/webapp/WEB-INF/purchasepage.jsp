@@ -30,6 +30,7 @@
     </nav>
     <main>
         
+
          <% Entity en = null;
             try {
                 en = (Entity)session.getAttribute("charity");
@@ -47,7 +48,7 @@
              }
          %>
          <h2><%=type%> Entry Form</h2>
-             
+
         <form method="post" name="Purchase Form" action="/FWRP/JSP/purchasepage">
             <label for="itemType">Item Type:</label>
             <input type="text" id="itemType" name="itemType" readonly="true" value="<%=item.getItemtype()%>"><br>
@@ -59,11 +60,14 @@
             <input type="text" id="expirationDate" name="expirationDate" readonly="true" value="<%=stock.getExpiryDateWidgetFmt()%>"><br><br>
             
             <label for="quantity">Quantity:</label>
+
             <input type="number" id="quantity" name="quantity" min="1" max="<%=stock.getQuantity()%>" value="<%=stock.getQuantity()%>"><br><br>
                 
             <label for="retailer">Retailer ID:</label>
             <input type="text" name="retailer" value="<%=stock.getRetailerId()%>"><br><br>
-               
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" readonly="true" value="<%=stock.getDiscountedPrice()%>><br><br>
+
             <input type="submit" value="Submit">
         </form>
     </main>
