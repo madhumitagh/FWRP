@@ -22,28 +22,26 @@
         </header>
         <nav>
             <ul id="navbar">
-            <li class="navitem"><a href="./index.html" >Home</a></li>
-            <li class="navitem"><a href="./retailerlogin.html">Retailer</a></li>
-            <li class="navitem"><a href="./consumerlogin.html">Consumer</a></li>
+            <li class="navitem"><a href="/FWRP/" >Home</a></li>
+            <li class="navitem"><a href="./JSP/retailerlogin">Retailer</a></li>
+            <li class="navitem"><a href="./JSP/consumerlogin">Consumer</a></li>
             <li class="navitem"><a class="active">Charitable Organization</a></li>
+            <li class="navitem"><a href="./JSP/consumptionpage">Consumption</a></li>
             </ul>    
         </nav>
+        
          <% Entity en = (Entity)session.getAttribute("charity");%>    
         <h2>Welcome Charitable Organization!<%=en.getName()%>! ID:<%=en.getId()%></h2><br>
-        <form method="post" action="/FWRP/JSP/charityclaim">
+        <form action="/FWRP/JSP/purchasepage">
+           
             
-        <div class=buttons2>
-            <button class="item">View Item</button>
-            <button class="item">Claim Item</button>
-        </div>
-            </form>
-        <table>
+        <table border="1">
   <tr>
     <th>Item Id</th>
     <th>Expiration</th>
     <th>Quantity</th>
     <th>Price</th>
-    <th>Surplus</th>
+   
    
   </tr>
   <% ArrayList<Stock> list = (ArrayList)request.getAttribute("item_list"); 
@@ -53,11 +51,16 @@
     <td><%=st.getExpiryDate()%></td>
     <td><%=st.getQuantity()%></td>
     <td><%=st.getDiscountedPrice()%></td>
-    <td><%=st.IsSurplus()%></td>
-          
+    <td>
+   <div class=buttons>
+            <button class=item name="stockupd" value="<%=st.getItemId() + "_" + st.getRetailerId()+ "_" + st.getExpiryDateStr()%>" type="submit">Claim</button>
+            
+        </div>
+    </td>   
   </tr>
   <% } %>
 </table>
+</form>
         <footer>
             <p>&copy; Final Project, 2024</p>
         </footer>
