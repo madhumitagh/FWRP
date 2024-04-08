@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList,com.fwrp.model.Consumption" %>
 <!DOCTYPE html>
     <html lang = "en">
     <head>
@@ -41,15 +42,18 @@
                     <th>Date Purchased</th>
                     <th>Price Purchased</th>
                 </tr>
+             <% ArrayList<Consumption> list = (ArrayList)request.getAttribute("item_list"); 
+     for (Consumption ent: list) { %>
                 <tr>
-                    <td><input type="number" name="itemId" required></td>
-                    <td><input type="number" name="retailerId" required></td>
-                    <td><input type="date" name="expirationDate" required></td>
-                    <td><input type="number" name="consumerId" required></td>
-                    <td><input type="number" name="quantity" min="1" required></td>
-                    <td><input type="date" name="datePurchased" required></td>
-                    <td><input type="text" name="pricePurchased" required></td>
+                    <td><input type="number" name="itemId" required value="<%=ent.getItemId()%>"></td>
+                    <td><input type="number" name="retailerId" required value="<%=ent.getRetailerId()%>"></td>
+                    <td><input type="date" name="expirationDate" required value="<%=ent.getExpirationDateStr()%>"></td>
+                    <td><input type="number" name="consumerId" required value="<%=ent.getConsumerId()%>"></td>
+                    <td><input type="number" name="quantity" min="1" required value="<%=ent.getQuantity()%>"></td>
+                    <td><input type="date" name="datePurchased" required value="<%=ent.getPurchaseDateStr()%>"></td>
+                    <td><input type="text" name="pricePurchased" required value="<%=ent.getPrice()%>"></td>
                 </tr>
+    <%}%>
             </table>
         </form>
     </main>

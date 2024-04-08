@@ -248,7 +248,7 @@ public class FWRPServlet extends HttpServlet {
         } else if (uri.equals("/FWRP/JSP/charitypage")) {
             if (request.getSession().getAttribute("charity") != null) {
                 Entity ent = (Entity)request.getSession().getAttribute("charity");
-                ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
+                ArrayList itemsList = StockDaoImpl.getInstance().getAll();
                 request.setAttribute("item_list", itemsList);
                 request.getRequestDispatcher("/WEB-INF/charitypage.jsp").forward(request, response);
             } else {
@@ -339,6 +339,8 @@ public class FWRPServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/consumerlogin.jsp").forward(request, response);
 
         } else if (uri.equals("/FWRP/JSP/consumptionpage")) {
+            ArrayList<Consumption> itemsList = ConsumerDaoImpl.getInstance().getAll();
+            request.setAttribute("item_list", itemsList);
             request.getRequestDispatcher("/WEB-INF/consumptionpage.jsp").forward(request, response);
             
         } else if (uri.equals("/FWRP/JSP/purchasepage")) {

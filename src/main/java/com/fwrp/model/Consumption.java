@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.fwrp.model;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -59,6 +60,11 @@ public class Consumption {
     public Date getExpirationDate() {
         return expirationDate;
     }
+    
+    public String getExpirationDateStr() {
+        SimpleDateFormat fmt = new SimpleDateFormat("MMM dd, yyyy");
+        return fmt.format(expirationDate);
+    }
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
@@ -92,6 +98,11 @@ public class Consumption {
         return purchaseDate;
     }
 
+    public String getPurchaseDateStr() {
+        SimpleDateFormat fmt = new SimpleDateFormat("MMM dd, yyyy");
+        return fmt.format(purchaseDate);
+    }
+    
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
