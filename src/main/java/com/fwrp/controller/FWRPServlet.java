@@ -414,7 +414,7 @@ public class FWRPServlet extends HttpServlet {
                                                                    presentStock.getRetailerId(),
                                                                    ent.getId(),ent.getType(),
                                                                    stock.getQuantity(), new Date (),
-                                                                   presentStock.getExpiryDate(),0/*cjarity*/);
+                                                                   presentStock.getExpiryDate(),0/*charity*/);
                                ConsumerDaoImpl.getInstance().insert(entry);
                                if (remainingQuantity <= 0) {
                                    StockDaoImpl.getInstance().delete(presentStock);
