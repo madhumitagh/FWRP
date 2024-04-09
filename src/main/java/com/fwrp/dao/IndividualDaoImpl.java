@@ -35,7 +35,7 @@ public class IndividualDaoImpl implements EntityDao {
         
         /* check username/password */
         String query = String.format("SELECT * from individual where " +
-                                     "Username=\"%s\" and Password=\"%s\"",
+                                     "Username=\"%s\" and BINARY Password=\"%s\"",
                                      entity.getUsername(), entity.getPassword());
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
