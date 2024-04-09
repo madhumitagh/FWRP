@@ -55,8 +55,9 @@
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
                 <input type="text"  name="password"><br>
-               
-                    <input class="submit" type="submit" value="Register">  
+                <label for="subscribe">Subscribe</label>
+                <input type="checkbox"  name="subscribe"><br>
+                <input class="submit" type="submit" value="Register">  
                
                 </form>
             </div>

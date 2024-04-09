@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import com.fwrp.model.factory.IndividualFactory;
 
 /**
  *
@@ -131,4 +133,25 @@ public class IndividualDaoImpl implements EntityDao {
 	}
 	return false;
     }    
+
+    @Override
+    public ArrayList<Entity> getAllSubscribed() {
+        Connection conn = DBConnection.getConnection();
+         ArrayList<Entity> list = new ArrayList();
+        /* check username */
+        String query = "SELECT * from charity where Subscribe=true";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);		
+	    ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(IndividualFactory.getInstance().getConsumer(rs.getString("Username"),
+                                                                     rs.getString("Password"),
+                                                                     rs.getString("Name")));
+            }
+        } catch (SQLException e) {
+            System.out.println("DB fetch Failed for " + query +
+                               " Message: " + e.getMessage());
+	}
+	return list;
+    }
 }
