@@ -39,7 +39,7 @@
                     <th>Expiration Date</th>
                     <th>Consumer ID</th>
                     <th>Quantity</th>
-                    <th>Date Purchased</th>
+                    <th>Date Purchased/Claimed</th>
                     <th>Price Purchased</th>
                 </tr>
              <% ArrayList<Consumption> list = (ArrayList)request.getAttribute("item_list"); 
