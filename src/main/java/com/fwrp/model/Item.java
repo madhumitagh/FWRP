@@ -51,6 +51,6 @@ public class Item {
     
     @Override
     public String toString() {
-        return Itemtype + " " + Name;
+        return this.Itemtype + " " + this.Name;
     }
 }
