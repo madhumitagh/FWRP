@@ -35,7 +35,7 @@ public class RetailerDaoImpl implements EntityDao {
         
         /* check username/password */
         String query = String.format("SELECT * from retailers where " +
-                                     "username=\"%s\" and password=\"%s\"",
+                                     "username=\"%s\" and BINARY password=\"%s\"",
                                      entity.getUsername(), entity.getPassword());
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
