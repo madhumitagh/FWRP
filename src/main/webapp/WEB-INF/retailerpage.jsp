@@ -20,6 +20,16 @@
         <header>
             <h1 id="title">Food Waste Reduction Platform</h1>
         </header>
+
+        <%ArrayList<Entity> notList = (ArrayList)request.getAttribute("notify_list");%>
+        <% if (notList != null) { %>
+        <span> 
+        New Stock&nbsp;<%=request.getAttribute("inserted_item")%>. Notifying:
+        <% for (Entity en: notList)  { %>
+        <%=en.getUsername()%>&nbsp;
+        <%}%>
+        </span>
+           <% }%>
         <nav>
             <ul id="navbar">
               <li class="navitem"><a href="/FWRP/" >Home</a></li>
@@ -41,7 +51,7 @@
         <form action="/FWRP/JSP/retailerupd">
         <table border="1">
   <tr>
-    <th>Item Id</th>
+    <th>Item Name/Id</th>
     <th>Expiration</th>
     <th>Quantity</th>
     <th>Price</th>
@@ -51,7 +61,7 @@
   <% ArrayList<Stock> list = (ArrayList)request.getAttribute("item_list"); 
      for (Stock st: list) { %>
   <tr>
-    <td><%=st.getItemId()%></td>
+      <td><%=st.getItemNameStr() + "["+st.getItemId()+"]"%></td>
     <td><%=st.getExpiryDateStr()%></td>
     <td><%=st.getQuantity()%></td>
     <td><%=st.getDiscountedPrice()%></td>

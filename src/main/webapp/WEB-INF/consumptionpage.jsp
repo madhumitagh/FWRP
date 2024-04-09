@@ -34,7 +34,7 @@
         <form>
             <table>
                 <tr>
-                    <th>Item ID</th>
+                    <th>Item Name/ID</th>
                     <th>Retailer ID</th>
                     <th>Expiration Date</th>
                     <th>Consumer ID</th>
@@ -45,7 +45,7 @@
              <% ArrayList<Consumption> list = (ArrayList)request.getAttribute("item_list"); 
      for (Consumption ent: list) { %>
                 <tr>
-                    <td><input type="number" name="itemId" required readonly="true" value="<%=ent.getItemId()%>"></td>
+                    <td><input type="number" name="itemId" required readonly="true" value="<%=ent.getItemNameStr() + " " + ent.getItemId()%>"></td>
                     <td><input type="number" name="retailerId" required readonly="true" value="<%=ent.getRetailerId()%>"></td>
                     <td><input type="text" name="expirationDate" required readonly="true" value="<%=ent.getExpirationDateStr()%>"></td>
                     <td><input type="number" name="consumerId" required readonly="true" value="<%=ent.getConsumerId()%>"></td>

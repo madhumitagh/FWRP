@@ -120,9 +120,17 @@ public class FWRPServlet extends HttpServlet {
                                                           expDate, price, quantity,
                                                           surplus);
                         StockDaoImpl.getInstance().insert(stock);
+                        
+                        ArrayList notifyList = CharityDaoImpl.getInstance().getAllSubscribed();
+                        notifyList.addAll(IndividualDaoImpl.getInstance().getAllSubscribed());
+                        request.setAttribute("notify_list", notifyList);
+                        request.setAttribute("inserted_item",
+                                             item.getItemtype() + " " + item.getName());
+                        //EmailNotify.sendEMail("Madhumita", "madhumita.bhp@gmail.com", "FWRP", "Test");
                         ArrayList itemsList = StockDaoImpl.getInstance().getAll(ent.getId());
                         request.setAttribute("item_list", itemsList);
-                        response.sendRedirect("/FWRP/JSP/retailerpage");
+                        request.getRequestDispatcher("/WEB-INF/retailerpage.jsp").forward(request, response);
+                        //response.sendRedirect("/FWRP/JSP/retailerpage");
                     } catch (ParseException e) {
                         System.out.println(e.getMessage());
                         response.sendRedirect("/FWRP/JSP/retailerpage");
@@ -236,8 +244,13 @@ public class FWRPServlet extends HttpServlet {
                 //Register
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
+                boolean subscribe = false;
+                if (request.getParameter("subscribe") != null) {
+                    subscribe = request.getParameter("subscribe").equals("on");
+                }
                 String name = request.getParameter("name");
                 Entity charity = CharityFactory.getInstance().getConsumer(username,password,name);
+                charity.setSubscribe(subscribe);
                 
                 if (!CharityDaoImpl.getInstance().check(username)) {
                     CharityDaoImpl.getInstance().enList(charity);
@@ -305,7 +318,13 @@ public class FWRPServlet extends HttpServlet {
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 String name = request.getParameter("firstname") + " " + request.getParameter("lastname");
+                boolean subscribe = false;
+                if (request.getParameter("subscribe") != null) {
+                    subscribe = request.getParameter("subscribe").equals("on");
+                }
+
                 Entity individual = IndividualFactory.getInstance().getConsumer(username, password, name);
+                individual.setSubscribe(subscribe);
                 
                 if (!IndividualDaoImpl.getInstance().check(username)) {
                     IndividualDaoImpl.getInstance().enList(individual);
@@ -391,7 +410,11 @@ public class FWRPServlet extends HttpServlet {
                            
                            if (presentStock != null){
                                int remainingQuantity = presentStock.getQuantity() - stock.getQuantity();
-                               Consumption entry = new Consumption(presentStock.getItemId(), presentStock.getRetailerId(), ent.getId(),ent.getType(), stock.getQuantity(), new Date (), presentStock.getExpiryDate(), presentStock.getDiscountedPrice());
+                               Consumption entry = new Consumption(presentStock.getItemId(),
+                                                                   presentStock.getRetailerId(),
+                                                                   ent.getId(),ent.getType(),
+                                                                   stock.getQuantity(), new Date (),
+                                                                   presentStock.getExpiryDate(),0/*cjarity*/);
                                ConsumerDaoImpl.getInstance().insert(entry);
                                if (remainingQuantity <= 0) {
                                    StockDaoImpl.getInstance().delete(presentStock);

@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import com.fwrp.model.factory.CharityFactory;
 
 /**
  *
@@ -100,7 +102,7 @@ public class CharityDaoImpl implements EntityDao {
     @Override
     public boolean subscriber(Entity entity) {
         Connection conn = DBConnection.getConnection();
-        String query = String.format("UPDATE from charity SET subscriber=\"%s\" " +
+        String query = String.format("UPDATE from charity SET Subscribe=\"%s\" " +
                                      "where id=%d",
                                      entity.isSubscribe(), entity.getId());                
 
@@ -131,5 +133,26 @@ public class CharityDaoImpl implements EntityDao {
                                " Message: " + e.getMessage());
 	}
 	return false;
+    }
+    
+    @Override
+    public ArrayList<Entity> getAllSubscribed() {
+        Connection conn = DBConnection.getConnection();
+         ArrayList<Entity> charityList = new ArrayList();
+        /* check username */
+        String query = "SELECT * from charity where Subscribe=true";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);		
+	    ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                charityList.add(CharityFactory.getInstance().getConsumer(rs.getString("Username"),
+                                                                          rs.getString("Password"),
+                                                                          rs.getString("Name")));
+            }
+        } catch (SQLException e) {
+            System.out.println("DB fetch Failed for " + query +
+                               " Message: " + e.getMessage());
+	}
+	return charityList;
     }
 }

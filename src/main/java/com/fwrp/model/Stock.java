@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.fwrp.model;
+import com.fwrp.dao.ItemDaoImpl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -94,5 +95,11 @@ public class Stock {
         this.quantity = quantity;
     }
     
-    
+    public String getItemNameStr() {
+        Item item = ItemDaoImpl.getInstance().get(this.itemId);
+        if (item != null) {
+            return item.toString();
+        }
+        return null;        
+    }
 }

@@ -57,6 +57,9 @@
                 <input type="text" name="username"><br>  
                 <label for="password">Password</label><br>
                 <input type="text"  name="password"><br>
+                <label for="subscribe">Subscribe</label>
+                <input type="checkbox"  name="subscribe"><br>
+
                 <input class="submitregistration" type="submit" value="Register">
                 </form>
             </div>            

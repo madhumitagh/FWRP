@@ -4,6 +4,7 @@
  */
 package com.fwrp.dao;
 import com.fwrp.model.Entity;
+import java.util.ArrayList;
 /**
  *
  * @author madhumita, piyalee.pooja,shilpi
@@ -14,4 +15,5 @@ public interface EntityDao {
     public boolean enList(Entity entity);
     public boolean deList(Entity entity);
     public boolean subscriber(Entity entity);
+    public ArrayList<Entity> getAllSubscribed();
 }

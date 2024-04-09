@@ -37,8 +37,8 @@
                 <label for="price">Discounted Price</label><br>
                 <input type="text"  name="price"><br>
                 <label for="quantity">Quantity</label><br>
-                <input type="number" name="quantity" min="1"><br><br>
-                <label for="surplus">Surplus</label><br>
+                <input type="number" name="quantity" min="1"><br>
+                <label for="surplus">Surplus</label>
                 <input type="checkbox"  name="surplus"><br>
                 <input type="submit"  name="submit"><br>
                 </form>

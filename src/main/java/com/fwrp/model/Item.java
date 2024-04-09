@@ -49,4 +49,8 @@ public class Item {
         this.Id = Id;
     }
     
+    @Override
+    public String toString() {
+        return Itemtype + " " + Name;
+    }
 }
