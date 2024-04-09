@@ -36,7 +36,7 @@ public class CharityDaoImpl implements EntityDao {
         
         /* check username/password */
         String query = String.format("SELECT * from charity where " +
-                                     "username=\"%s\" and password=\"%s\"",
+                                     "username=\"%s\" and BINARY password=\"%s\"",
                                      entity.getUsername(), entity.getPassword());
         try {
             PreparedStatement ps = conn.prepareStatement(query);		
